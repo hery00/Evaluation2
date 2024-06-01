@@ -22,7 +22,7 @@
 
 # app.baseURL = ''
 # If you have trouble with `.`, you could also use `_`.
- app_baseURL = 'http://localhost/Evaluation_ds2/public/'
+ app_baseURL = 'http://localhost/Evaluation2/public/'
 # app.forceGlobalSecureRequests = false
 # app.CSPEnabled = false
 
