@@ -18,6 +18,9 @@ CREATE TABLE Categorie(
    nom VARCHAR(255)
 );
 
+
+
+
 -- Insérer des catégories dans la table Categorie
 INSERT INTO Categorie (nom) VALUES ('Homme');
 INSERT INTO Categorie (nom) VALUES ('Femme');
@@ -50,6 +53,50 @@ CREATE TABLE Etape(
 INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Betsizaraina', 150.5, 2, 1, 1);
 INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Mandrosoa', 120.25, 3, 2, 1);
 INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Andapa', 120.25, 3, 3, 1);
+
+CREATE TABLE Etapecategorie(
+    id_etapecategorie serial primary key not null,
+    id_categorie INTEGER,
+    id_etape INTEGER,
+    FOREIGN KEY(id_etape) REFERENCES etape(id_etape),
+    FOREIGN KEY(id_categorie) REFERENCES  categorie( id_categorie)
+);
+
+-- Pour la catégorie "Homme"
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (1, 1);
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (1, 2);
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (1, 3);
+
+-- Pour la catégorie "Femme"
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (2, 1);
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (2, 2);
+
+-- Pour la catégorie "Junior"
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (3, 1);
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (3, 2);
+
+-- Pour la catégorie "Senior"
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (4, 1);
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (4, 2);
+INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (4, 3);
+
+
+CREATE VIEW ViewEtapeCategorie AS
+SELECT
+    e.id_etape,
+    e.nom AS nom_etape,
+    e.longueur_km,
+    e.nb_coureur,
+    e.rang_etape,
+    e.id_course,
+    c.id_categorie,
+    c.nom AS nom_categorie
+FROM 
+    Etape e
+JOIN 
+    Etapecategorie ec ON e.id_etape = ec.id_etape
+JOIN 
+    Categorie c ON ec.id_categorie = c.id_categorie;
 
 CREATE TABLE Coureur (
     id_coureur SERIAL PRIMARY KEY,
@@ -87,69 +134,93 @@ CREATE TABLE CoureurCategorie (
     id_coureurcategorie serial primary key not null,
     id_coureur INTEGER NOT NULL,
     id_categorie INTEGER NOT NULL,
+    id_equipe INTEGER NOT NULL,
     FOREIGN KEY (id_coureur) REFERENCES Coureur(id_coureur),
+    FOREIGN KEY (id_equipe) REFERENCES equipe(id_equipe),
     FOREIGN KEY (id_categorie) REFERENCES Categorie(id_categorie)
 );
 
+-- Coureur 101 (Rakoto) est un Homme dans l'équipe 1
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (1, 1, 1);
 
--- Coureur 101 (Rakoto) est un Homme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (1, 1);
+-- Coureur 102 (Randria) est une Femme dans l'équipe 1
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (2, 2, 1);
 
--- Coureur 102 (Randria) est une Femme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (2, 2);
+-- Coureur 103 (Michael) est un Homme dans l'équipe 2
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (3, 1, 2);
 
--- Coureur 103 (Michael) est un Homme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (3, 1);
+-- Coureur 104 (Emily Johnson) est une Femme dans l'équipe 2
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (4, 2, 2);
 
--- Coureur 104 (Emily Johnson) est une Femme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (4, 2);
+-- Coureur 105 (David Brown) est un Homme dans l'équipe 3
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (5, 1, 3);
 
--- Coureur 105 (David Brown) est un Homme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (5, 1);
+-- Coureur 106 (Sarah Williams) est une Femme dans l'équipe 3
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (6, 2, 3);
 
--- Coureur 106 (Sarah Williams) est une Femme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (6, 2);
+-- Coureur 107 (Daniel Lee) est un Homme et un Senior dans l'équipe 4
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (7, 1, 4);
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (7, 4, 4);
 
--- Coureur 107 (Daniel Lee) est un Homme et un Senior
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (7, 1);
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (7, 4);
+-- Coureur 108 (Jessica Taylor) est une Femme et une Junior dans l'équipe 1
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (8, 2, 1);
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (8, 3, 1);
 
--- Coureur 108 (Jessica Taylor) est une Femme et une Junior
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (8, 2);
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (8, 3);
+-- Coureur 109 (Ryan Martinez) est un Homme dans l'équipe 1
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (9, 1, 1);
 
--- Coureur 109 (Ryan Martinez) est un Homme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (9, 1);
+-- Coureur 110 (Amanda White) est une Femme dans l'équipe 2
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (10, 2, 2);
 
--- Coureur 110 (Amanda White) est une Femme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (10, 2);
+-- Coureur 111 (Michael Dieu) est un Homme dans l'équipe 2
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (11, 1, 2);
 
--- Coureur 111 (Michael Dieu) est un Homme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (11, 1);
+-- Coureur 112 (Jennifer Rodriguez) est une Femme dans l'équipe 3
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (12, 2, 3);
 
--- Coureur 112 (Jennifer Rodriguez) est une Femme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (12, 2);
+-- Coureur 113 (Christopher Anderson) est un Homme dans l'équipe 3
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (13, 1, 3);
 
--- Coureur 113 (Christopher Anderson) est un Homme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (13, 1);
+-- Coureur 114 (Emma Garcia) est une Femme dans l'équipe 4
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (14, 2, 4);
 
--- Coureur 114 (Emma Garcia) est une Femme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (14, 2);
+-- Coureur 115 (Nicholas Martinez) est un Homme et un Junior dans l'équipe 4
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (15, 1, 4);
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (15, 3, 4);
 
--- Coureur 115 (Nicholas Martinez) est un Homme et un Junior
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (15, 1);
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (15, 3);
+-- Coureur 116 (Olivia Miller) est une Femme et une Senior dans l'équipe 1
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (16, 2, 1);
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (16, 4, 1);
 
--- Coureur 116 (Olivia Miller) est une Femme et une Senior
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (16, 2);
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (16, 4);
+-- Coureur 117 (William Taylor) est un Homme dans l'équipe 1
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (17, 1, 1);
 
--- Coureur 117 (William Taylor) est un Homme
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (17, 1);
+-- Coureur 118 (Sophia Anderson) est une Femme et une Junior dans l'équipe 2
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (18, 2, 2);
+INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (18, 3, 2);
 
--- Coureur 118 (Sophia Anderson) est une Femme et une Junior
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (18, 2);
-INSERT INTO CoureurCategorie (id_coureur, id_categorie) VALUES (18, 3);
+
+
+CREATE OR REPLACE VIEW vCoureurDetails AS
+SELECT 
+    c.id_coureur,
+    c.nom AS coureur_nom,
+    c.numero_dossard,
+    c.genre,
+    c.date_naissance,
+    e.id_equipe,
+    e.nom AS equipe_nom,
+    cat.id_categorie,
+    cat.nom AS categorie_nom
+FROM 
+    Coureur c
+JOIN 
+    equipe e ON c.id_equipe = e.id_equipe
+JOIN 
+    CoureurCategorie cc ON c.id_coureur = cc.id_coureur
+JOIN 
+    Categorie cat ON cc.id_categorie = cat.id_categorie;
+
 
 
 CREATE TABLE Classement (

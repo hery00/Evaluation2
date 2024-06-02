@@ -8,12 +8,21 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class EtapesController extends BaseController
 {
-    public function etapesByCourse()
+    public function etapesbycategorieByCourse()
     {
         $id_course = $this->request->getGet('idcourse');
+        $id_categorie = $this->request->getGet('idcategorie');
+        if(isset($id_categorie)){
+            $idcategorie=$id_categorie;
+        }
+        else
+        {
+            $idcategorie=1;
+        }
+        
         $data['id_course'] = $id_course;
         $etapeModel = new EtapesModel();
-        $data['etapes'] = $etapeModel->getEtapesByCourse($id_course);
+        $data['etapes'] = $etapeModel->getEtapesByCategorieByCourse($id_course,$idcategorie);
         $data = [
             'content' => view('Pages/etapescourse',$data)
         ];
