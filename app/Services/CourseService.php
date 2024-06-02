@@ -16,6 +16,12 @@ class CourseService
 
     public function getCourses()
     {
+        $session = session();
+        if($session->get('id_etape')&&$session->get('nb_coureur'))
+        {
+            $session->remove('id_etape');
+            $session->remove('nb_coureur');
+        }
         return $this->courseModel->getCourses();
     }
 }

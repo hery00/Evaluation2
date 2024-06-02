@@ -1,22 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choix d'option</title>
+  <!-- CSS Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 <main id="main" class="main">
-
-
 <section class="section">
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">lISTE DE VOS COUREURS</h5>
-            <form id="choixForm" action="<?base_url('/coureur/equipe') ?>" method="GET">
+            <h5 class="card-title">LISTE DE VOS COUREURS</h5>
+            <form id="choixForm" action="<?= base_url('/coureur/equipe') ?>" method="GET">
               <select class="form-control" id="options" name="idcategorie">
-              <option value="">Selectionner Categorie</option>
+                <option value="">Sélectionner Catégorie</option>
                 <option value="1">Homme</option>
                 <option value="2">Femme</option>
                 <option value="3">Junior</option>
                 <option value="4">Senior</option>
               </select>
             </form>
-    <table class="table table-hover">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -32,7 +40,6 @@
               <tbody>
                 <?php foreach ($coureurs as $coureur): ?>
                 <tr>
-                  <form action="<?= base_url('') ?>" method="get">
                     <td><?= $coureur['id_coureur'] ?></td>
                     <td><?= $coureur['coureur_nom'] ?></td>
                     <td><?= $coureur['numero_dossard'] ?></td>
@@ -40,26 +47,29 @@
                     <td><?= $coureur['date_naissance'] ?></td>
                     <td><?= $coureur['equipe_nom'] ?></td>
                     <td><?= $coureur['categorie_nom'] ?></td>
-                    <td><button type="button" class="btn btn-primary choose-participants" data-coureur="<?= $coureur['id_coureur'] ?>">Choisir</button></td>
-                  </form>
+                    <td><a href="<?= base_url('/choisircoureur') ?>?idcoureur<?= $coureur['id_coureur'] ?>"><button type="button" class="btn btn-primary choose-participants" data-coureur="<?= $coureur['id_coureur'] ?>">Choisir</button></a></td>
                 </tr>
                 <?php endforeach; ?>
               </tbody>
             </table>
-        </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </main>
 
-<script>
-$(document).ready(function() {
-  $('#options').change(function() {
-    // Mettre à jour la valeur de idcourse avec la valeur actuelle
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    // Soumettre le formulaire
-    $('#choixForm').submit();
-  });
-});
+<script>
+    $(document).ready(function() {
+        $('#options').change(function() {
+            $('#choixForm').submit(); // Soumet le formulaire automatiquement lorsque l'option change
+        });
+    });
 </script>
+
+</body>
+</html>

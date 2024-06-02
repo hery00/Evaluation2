@@ -22,7 +22,8 @@ use CodeIgniter\Model;
 
         public function getCoureurDetails($id_equipe)
         {
-            return $this->findAll();
+            return $this->where('id_equipe', $id_equipe)
+            ->findAll();
         }
 
         public function getCoureurDetailsByCategorie($id_equipe,$id_categorie)

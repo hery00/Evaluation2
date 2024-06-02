@@ -11,15 +11,17 @@ class CoureurController extends BaseController
 
     public function getCoureurByEquipe()
     {
-        $idcategorie = $this->request->getGet('idcategorie');
-        $session = session();
-        $id_equipe = $session->get('id_user');
+        
         $coureurDetailsModel = new CoureurDetailsModel();
-        if(isset($idcategorie))
+        if(isset($_GET['idcategorie']))
         {
+            $idcategorie = $_GET['idcategorie'];
             $data['coureurs']= $coureurDetailsModel->getCoureurDetailsByCategorie($id_equipe,$idcategorie);
         }
-        $data['coureurs'] = $coureurDetailsModel->getCoureurDetails($id_equipe);
+        else{
+            $data['coureurs'] = $coureurDetailsModel->getCoureurDetails($id_equipe);
+        }
+       
         $data = [
             'content' => view('Pages/coureurparequipe',$data)
         ];

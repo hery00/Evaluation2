@@ -10,12 +10,14 @@ class EtapesController extends BaseController
 {
     public function etapesByCourse()
     {
+        
         $id_course = $this->request->getGet('idcourse');
         
         $data['id_course'] = $id_course;
         $etapeModel = new EtapesModel();
         $data['etapes'] = $etapeModel->getEtapesByCourse($id_course);
-        $data = [
+        $data =
+        [
             'content' => view('Pages/etapescourse',$data)
         ];
         return view('Layout/layout',$data);
