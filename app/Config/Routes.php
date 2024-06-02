@@ -14,7 +14,8 @@ $routes->post('/login', 'UserController::process');
 $routes->get('/accueil', 'UserController::accueil');
 
 $routes->get('/equipeaccueil', 'EquipeController::index');
-$routes->get('/listetapescourse', 'EtapesController::etapesbycategorieByCourse');
+$routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');
+$routes->get('/listetapescourse', 'EtapesController::etapesByCourse');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');
 // $routes->get('clientcontroller/newdevis', 'ClientController::newdevis');
