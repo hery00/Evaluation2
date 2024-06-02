@@ -11,9 +11,10 @@ $routes->post('inscription', 'UserController::register');
 
 $routes->get('/log', 'UserController::log');
 $routes->post('/login', 'UserController::process');
-$routes->get('/dashboard', 'UserController::todashboard');
+$routes->get('/accueil', 'UserController::accueil');
 
-// $routes->post('clientcontroller/accueil', 'ClientController::accueil');
+$routes->get('/equipeaccueil', 'EquipeController::index');
+$routes->get('/listetapescourse', 'EtapesController::etapesByCourse');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');
 // $routes->get('clientcontroller/newdevis', 'ClientController::newdevis');

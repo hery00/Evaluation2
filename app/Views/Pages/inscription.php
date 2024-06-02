@@ -78,7 +78,7 @@
                     <div class="col-12">
                       <label for="login" class="form-label">Login</label>
                       <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        <span class="input-group-text" id="inputGroupPrepend">Login</span>
                         <input type="text" name="login" class="form-control" id="login" required>
                         <div class="invalid-feedback">Veuiller entrer votre login!</div>
                       </div>

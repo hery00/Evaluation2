@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TdevisDetailsModel extends Model
+class EquipeModel extends Model
 {
-    protected $table            = 'tdevisdetailsmodel;s';
+    protected $table            = 'equipes';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';

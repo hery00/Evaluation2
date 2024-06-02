@@ -36,12 +36,12 @@ class UserController extends BaseController
 
                 if($user['table'] == 'admin')
                 {
-                    return redirect()->to('/dashboard');
+                    return redirect()->to('/accueil');
                 }
 
                 elseif($user['table'] == 'equipe')
                 {
-                    echo "Equipe no eto";
+                    return redirect()->to('/accueil');
                 }
                 
             }
@@ -52,12 +52,12 @@ class UserController extends BaseController
             }
     }
 
-    public function todashboard()
+    public function Accueil()
     {
         $data = [
             'content' => view('Pages/dashboard')
         ];
-        return view('Layout/layoutadmin', $data);
+        return view('Layout/layout',$data);
     }
 
     public function register()

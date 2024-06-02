@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
+use App\Services\CourseService;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
@@ -21,6 +22,13 @@ use Psr\Log\LoggerInterface;
  */
 abstract class BaseController extends Controller
 {
+
+    protected $courseService;
+
+    public function __construct()
+    {
+        $this->courseService = new CourseService();
+    }
     /**
      * Instance of the main Request object.
      *
