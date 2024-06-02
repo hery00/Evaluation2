@@ -13,6 +13,11 @@ $routes->get('/log', 'UserController::log');
 $routes->post('/login', 'UserController::process');
 $routes->get('/accueil', 'UserController::accueil');
 
+$routes->get('adIndex', 'Admin::index');
+$routes->get('/admin', 'Admin::admin');
+
+$routes->get('/listetapescourse', 'EtapesController::etapesCourseAdmin');
+
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');
 $routes->get('/listetapescourse', 'EtapesController::etapesByCourse');

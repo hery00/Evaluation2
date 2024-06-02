@@ -22,4 +22,20 @@ class EtapesController extends BaseController
         ];
         return view('Layout/layout',$data);
     }
+
+    public function etapesCourseAdmin()
+    {
+        
+        $id_course = $this->request->getGet('idcourse');
+        
+        $data['id_course'] = $id_course;
+        $etapeModel = new EtapesModel();
+        $data['etapes'] = $etapeModel->getEtapesByCourse($id_course);
+        $data =
+        [
+            'content' => view('Pages/admin_dashboard',$data)
+        ];
+        return view('Layout/layout',$data);
+    }
+
 }
