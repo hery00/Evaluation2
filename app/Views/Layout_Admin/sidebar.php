@@ -12,6 +12,12 @@ $courses = $courseService->getCourses();
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link " href="<?= base_url('linkPoint') ?>">
+                <i class="bi bi-grid"></i>
+                <span>Import des points</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link " href="<?=base_url('/listetapeadmin') ?>">
             <i class="bi bi-menu-button-wide"></i>
                 <span>Liste Des Etapes</span>
