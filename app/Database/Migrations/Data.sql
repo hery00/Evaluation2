@@ -47,9 +47,11 @@ CREATE TABLE Etape(
    FOREIGN KEY(id_course) REFERENCES Course(id_course)
 );
 
-INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Betsizaraina', 150.5, 2, 1, 1);
-INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Mandrosoa', 120.25, 3, 2, 1);
-INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Andapa', 120.25, 3, 3, 1);
+INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course, depart) 
+VALUES 
+('Betsizaraina', 150.5, 2, 1, 1, '2024-06-01 08:00:00'),
+('Mandrosoa', 120.25, 3, 2, 1, '2024-06-02 09:00:00'),
+('Andapa', 120.25, 3, 3, 1, '2024-06-03 10:00:00');
 
 
 CREATE TABLE Coureur (
