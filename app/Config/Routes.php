@@ -20,6 +20,8 @@ $routes->get('dashboard', 'CoursesController::dash_admin');
 
 $routes->get('formulaire', 'ParticipationController::index');
 $routes->post('form', 'ParticipationController::create');
+$routes->get('/formupdatearrivee', 'ParticipationController::formupdatearrivee');
+$routes->get('/updatearrivee', 'ParticipationController::updateArrivee');
 
 $routes->get('import','ImportController::index');
 $routes->post('importcsv', 'ImportController::importcsv');

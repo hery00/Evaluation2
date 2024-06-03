@@ -26,7 +26,8 @@
                 <?php endforeach; ?>
               </tbody>
             </table>
-            <button type="button" class="btn btn-primary choose-participants">Ajouter coureur</button>
+            <a href="<?= base_url('/listecoureur') ?>"><button type="button" class="btn btn-primary choose-participants">Ajouter coureur</button></a>
+            
           </div>
         </div>
         <?php endforeach; ?>

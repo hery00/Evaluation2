@@ -1,7 +1,10 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\ParticipationModel;
+use App\Models\EtapesModel;
+use App\Models\ParticipantModel;
+use DateTime;
+
 
 class ParticipationController extends BaseController
 {
@@ -13,39 +16,48 @@ class ParticipationController extends BaseController
         return view('Layout_Admin/layout',$data);
     }
 
-    
-    public function create()
+
+
+public function formUpdateArrivee()
+
 {
-    helper(['form', 'url']);
+    $participationmodel = new ParticipantModel();
+    $id_participation = $this->request->getGet('idparticipation');
+    $data['participation'] = $participationmodel->getParticipationsById($id_participation);
 
-    // Récupérer les données du formulaire
-    $id_etape = $this->request->getPost('id_etape');
-    $id_coureur = $this->request->getPost('id_coureur');
-    $id_equipe = $this->request->getPost('id_equipe');
-    $heure_depart = $this->request->getPost('heure_depart');
-    $heure_arrivee = $this->request->getPost('heure_arrivee');
-
-    // Préparer les données pour l'insertion
-    $data = [
-        'id_etape' => $id_etape,
-        'id_coureur' => $id_coureur,
-        'id_equipe' => $id_equipe,
-        'heure_depart' => $heure_depart,
-        'heure_arrivee' => $heure_arrivee
-    ];
-
-    // Insérer les données
-    $participationModel = new ParticipationModel();
-    $participationModel->insert($data);
-
-    // Charger la vue avec le formulaire
-    $data['validation'] = $this->validator;
-    $content = view('Pages/admin_dashboard', $data);
-
-    // Retourner la vue incluant le layout
-    return view('Layout_Admin/layout', ['content' => $content]);
+    $data['content'] = view('Pages/forminsertdate',$data);
+    return view('Layout_Admin/layout',$data);
 }
 
+
+public function updateArrivee()
+    {
+        $etapemodel = new EtapesModel();
+        $model = new ParticipantModel();
+
+        $id_etape = $this->request->getGet('idetape');
+        $id_coureur = $this->request->getGet('idcoureur');
+        $id_equipe = $this->request->getGet('idequipe');
+        $date = $this->request->getGet('date');
+        $time = $this->request->getGet('time');
+        $nouvelle_arrivee = $date . ' ' . $time;
+
+        $etape = $etapemodel->find($id_etape);
+
+        $nouvelleArriveeDateTime = new DateTime($nouvelle_arrivee);
+        $departDateTime = new DateTime($etape['depart']);
+
+        if ($nouvelleArriveeDateTime < $departDateTime) {
+            return redirect()->to('/formupdatearrivee')->with('error', 'Il faut insérer une date supérieure à ' . $etape['depart']);
+        }
+
+        // Debugging: Print the parameters being passed to the model
+        log_message('debug', 'Parameters: id_etape=' . $id_etape . ', id_coureur=' . $id_coureur . ', id_equipe=' . $id_equipe . ', nouvelle_arrivee=' . $nouvelle_arrivee);
+
+        $model->updateArrivee($id_etape, $id_coureur, $id_equipe, $nouvelle_arrivee);
+
+        return redirect()->to('/listetapeadmin')->with('success', 'Heure d\'arrivée mise à jour avec succès.');
+    }
     
 }
 

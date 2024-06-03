@@ -12,12 +12,6 @@ $courses = $courseService->getCourses();
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= base_url('/listecoureur') ?>">
-          <i class="bi bi-card-list"></i>
-          <span>Deroulement</span>
-        </a>
-        </li>
-        <li class="nav-item">
         <a class="nav-link collapsed" href="<?= base_url('/etapeparticipation') ?>">
           <i class="bi bi-card-list"></i>
           <span>Test etapes details</span>
