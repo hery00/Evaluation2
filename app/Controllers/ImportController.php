@@ -10,7 +10,10 @@ class ImportController extends BaseController
 {
     public function index(): string
     {
-        return view('Pages/Import');
+        $data = [
+            'content' => view('Pages/Import')
+        ];
+        return view('Layout_Admin/layout',$data);
     }
 
     public function importcsv()

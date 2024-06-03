@@ -33,6 +33,9 @@ use CodeIgniter\Model;
                         ->findAll();
         }
 
-
+        public function getCoureur()
+        {
+            return $this->findAll();        
+        }
     
 }
