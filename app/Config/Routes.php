@@ -29,6 +29,7 @@ $routes->get('/generation','CoureurCategorieController::insert');
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');
 $routes->get('/listecoureur', 'EtapesController::getCoureurEtape');
+$routes->get('/etapeparticipation', 'EtapesController::getEtapesdetails');
 $routes->get('/assignercoureur', 'ChoixCoureurController::assignerParticipant');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');

@@ -268,6 +268,10 @@ create table import_etape (
     heure_depart TIME
 );
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 CREATE OR REPLACE VIEW vParticipationDetails AS
 SELECT 
     p.id_participation,

@@ -21,10 +21,11 @@ class ChoixCoureurController extends BaseController
         $coureur = $Coureur->getCoureurDetailsByid($id_coureur);
         $etape = $Etape->getEtapesById($id_etape);
         $isparticipant = $Participant->EfaParticipant($id_etape,$coureur['id_equipe'], $id_coureur);
-        if ($isparticipant==true){
+        if($isparticipant==true)
+        {
             $session->setFlashdata('error', 'Certains coureurs ont déjà été choisis.');
             return redirect()->to('/listecoureur');
-            }
+        }
          elseif($isparticipant==false){
                 $countparticipation = $Participant->countparticipant($id_etape, $coureur['id_equipe']);
                 if($countparticipation<$etape['nb_coureur']){

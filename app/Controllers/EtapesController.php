@@ -27,9 +27,7 @@ class EtapesController extends BaseController
 
     public function etapesCourseAdmin()
     {
-        
         $id_course = $this->request->getGet('idcourse');
-        
         $data['id_course'] = $id_course;
         $etapeModel = new EtapesModel();
         $data['etapes'] = $etapeModel->getEtapesByCourse($id_course);
@@ -39,6 +37,7 @@ class EtapesController extends BaseController
         ];
         return view('Layout_Admin/layout',$data);
     }
+<<<<<<< Updated upstream
     public function getEtapesdetails()
     {
         $etapes = new EtapesModel();
@@ -46,6 +45,37 @@ class EtapesController extends BaseController
         $participation = new ParticipationDetailsModel();
         
         $list_participation = $participation->getParticipationsDetailsByEtape($id_etape);
+=======
+    
+    public function getEtapesdetails()
+    {
+        $session = session();
+        $id_equipe = $session->get('id_user');
+        $etapesModel = new EtapesModel();
+        $list_etape = $etapesModel->getEtapesByCourse();  
+        $participationDetailsModel = new ParticipationDetailsModel();
+
+        $result = [];
+
+        foreach ($list_etape as $etape) {
+            $id_etape = $etape['id_etape'];
+            $list_participation = $participationDetailsModel->getParticipationsDetailsByEtape($id_etape);
+            $result[$id_etape] = [
+                'etape' => $etape,
+                'participations' => $list_participation
+            ];
+        }
+
+        $data = [
+            'id_equipe' => $id_equipe,
+            'result' => $result
+        ];
+
+        $pageContent = view('Pages/participationetape', $data);
+        $data = ['content' => $pageContent];
+
+        return view('Layout/layout', $data);
+>>>>>>> Stashed changes
     }
 
 }

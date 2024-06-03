@@ -16,7 +16,13 @@ $courses = $courseService->getCourses();
           <i class="bi bi-card-list"></i>
           <span>Deroulement</span>
         </a>
-      </li>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="<?= base_url('/etapeparticipation') ?>">
+          <i class="bi bi-card-list"></i>
+          <span>Test etapes details</span>
+        </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Resultats</span><i class="bi bi-chevron-down ms-auto"></i>

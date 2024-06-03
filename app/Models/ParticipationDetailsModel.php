@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class ParticipationDetailsModel extends Model
 {
-    protected $table = 'vParticipationDetails';
+    protected $table = 'vparticipationdetails';
     protected $returnType = 'array';
     protected $allowedFields = [
         'id_participation', 'heure_depart', 'heure_arrivee',
@@ -17,7 +17,7 @@ class ParticipationDetailsModel extends Model
 
     public function getParticipationsDetailsByEtape($id_etape)
     {
-        return $this->where('id_equipe', $id_etape)->findAll();
+        return $this->where('id_etape', $id_etape)->findAll();
     }
 
 }
