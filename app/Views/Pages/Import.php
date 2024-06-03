@@ -9,11 +9,12 @@
                 <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Importation Etapes</label>
                     <div class="col-sm-10">
-                    <form method="post" action="<?= base_url('importcsv') ?>" enctype="multipart/form-data">
-                    <input type="file" name="fichier">
-                    <button type="submit">Importer</button>
-                </form>
-
+                    <input class="form-control" type="file" name="fichier" id="csv_file" required accept=".csv">
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Soumettre</button>
                   </div>
                 </div>
               </div>
