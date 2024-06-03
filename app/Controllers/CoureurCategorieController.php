@@ -14,7 +14,7 @@ class CoureurCategorieController extends BaseController
         $categorieModel = new CategorieModel();
         $coureurCategorieModel  = new CoureurCategorieModel();
 
-        $coureurs = $coureurModel->getAllCoureurs();
+        $coureurs = $coureurModel->getCoureur();
         $currentYear = date('Y');
 
         foreach ($coureurs as $coureur) {
@@ -24,8 +24,7 @@ class CoureurCategorieController extends BaseController
             if ($age < 18) {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 3, 
-                    'id_equipe' => $coureur['id_equipe']
+                    'id_categorie' => 3
                 ];
 
                 $coureurCategorieModel->insert($data);
@@ -34,8 +33,7 @@ class CoureurCategorieController extends BaseController
             if ($age > 18) {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 4, 
-                    'id_equipe' => $coureur['id_equipe']
+                    'id_categorie' => 4
                 ];
 
                 $coureurCategorieModel->insert($data);
@@ -44,8 +42,7 @@ class CoureurCategorieController extends BaseController
             if (strtolower($coureur['genre']) == 'homme') {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 1,  
-                    'id_equipe' => $coureur['id_equipe']
+                    'id_categorie' => 1
                 ];
 
                 $coureurCategorieModel->insert($data);
@@ -54,15 +51,14 @@ class CoureurCategorieController extends BaseController
             if (strtolower($coureur['genre']) == 'femme') {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 2,  
-                    'id_equipe' => $coureur['id_equipe']
+                    'id_categorie' => 2
                 ];
 
                 $coureurCategorieModel->insert($data);
             }
         }
 
-        return redirect()->to('/import'); 
+        return redirect()->to('Pages/admin_dashboard');
 
     }
     
