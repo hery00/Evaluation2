@@ -37,15 +37,7 @@ class EtapesController extends BaseController
         ];
         return view('Layout_Admin/layout',$data);
     }
-<<<<<<< Updated upstream
-    public function getEtapesdetails()
-    {
-        $etapes = new EtapesModel();
-        $list_etape = $etapes->getEtapesByCourse();
-        $participation = new ParticipationDetailsModel();
-        
-        $list_participation = $participation->getParticipationsDetailsByEtape($id_etape);
-=======
+    
     
     public function getEtapesdetails()
     {
@@ -75,7 +67,6 @@ class EtapesController extends BaseController
         $data = ['content' => $pageContent];
 
         return view('Layout/layout', $data);
->>>>>>> Stashed changes
     }
 
 }
