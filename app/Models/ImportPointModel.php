@@ -6,16 +6,12 @@ use CodeIgniter\Model;
 
 class ImportPointModel extends Model
 {
-    protected $table = 'import_etape'; // Le nom de votre table
+    protected $table = 'import_point'; // Le nom de votre table
     protected $primaryKey = 'id'; // Supposons que vous avez une colonne id comme clé primaire
 
     protected $allowedFields = [
-        'etape',
-        'longueur',
-        'nb_coureur',
-        'rang_etape',
-        'date_depart',
-        'heure_depart'
+        'classement',
+        'point'
     ];
 
     // Optionnel : Si vous avez des colonnes de création et de mise à jour automatiques
@@ -28,18 +24,18 @@ class ImportPointModel extends Model
     /**
      * Insert data from CSV.
      *
-     * @param string $etape
-     * @param float $longueur
+     * @param string $classement
+     * @param float $point
      * @param int $nb_coureur
-     * @param int $rang_etape
+     * @param int $rang_classement
      * @param string $date_depart
      * @param string $heure_depart
      * @return bool
      */
-    public function insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart)
+    public function insertCsvData($classement, $point)
     {
-        $sql = "INSERT INTO import_etape VALUES ('%s','%d','%d','%d','%s','%s')";
-        $sql = sprintf($sql,$etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart);
+        $sql = "INSERT INTO import_classement VALUES ('%d','%d')";
+        $sql = sprintf($sql,$classement, $point);
         echo $sql;
         $this->db->query($sql);
 

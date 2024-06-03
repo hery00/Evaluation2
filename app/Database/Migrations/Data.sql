@@ -265,6 +265,11 @@ create table import_resultat(
     arrivee TIMESTAMP
 );
 
+create table import_point(
+    classement INTEGER,
+    points INTEGER
+);
+
 CREATE OR REPLACE VIEW vParticipationDetails AS
 SELECT 
     p.id_participation,

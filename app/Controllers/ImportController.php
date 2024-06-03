@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ImportModel;
 use App\Models\ImportEtapeModel;
 use App\Models\ImportResultatModel;
+use App\Models\ImportPointModel;
 use CodeIgniter\Files\File;
 
 class ImportController extends BaseController
@@ -54,7 +55,7 @@ class ImportController extends BaseController
         {
             $resultatmodel = new ImportResultatModel();
 
-            $etape_rang = $tab2[$i][0];
+            $classement_rang = $tab2[$i][0];
             $numero_dossard = $tab2[$i][1];
             $nom = $tab2[$i][2];
             $genre = $tab2[$i][3];
@@ -62,8 +63,9 @@ class ImportController extends BaseController
             $equipe = $tab2[$i][5];
             $arrivee = $tab2[$i][5];
 
-            $resultatmodel -> insertCsvData($etape_rang, $numero_dossard, $nom, $genre, $date_naissance, $equipe, $arrivee); 
+            $resultatmodel -> insertCsvData($classement_rang, $numero_dossard, $nom, $genre, $date_naissance, $equipe, $arrivee); 
         }
+        
         //var_dump($tab2);
     }
 
@@ -79,7 +81,18 @@ class ImportController extends BaseController
        // return redirect()->back()->with('success', 'File imported successfully.');
 
         $tab1 = $importModel -> import_csv($cheminTemporaire);
-        var_dump($tab1);
+        // var_dump($tab1);
+        
+        for ($i = 1; $i < count($tab1); $i++) 
+        {
+            $PointModel = new ImportPointModel();
+
+            $classement = $tab1[$i][0];
+            $point = $tab1[$i][1];
+
+            $PointModel -> insertCsvData($classement, $point); 
+        }
+
 
     }
     public function link_point()
@@ -95,14 +108,14 @@ class ImportController extends BaseController
     //         // $ligne = $donnees[$i];
     //         $model = new ImportModel();
 
-    //         $etape = $donnees[$i][0];
+    //         $classement = $donnees[$i][0];
     //         $longueur = $donnees[$i][1];
     //         $nb_coureur = $donnees[$i][2];
-    //         $rang_etape = $donnees[$i][3];
+    //         $rang_classement = $donnees[$i][3];
     //         $date_depart = $donnees[$i][4];
     //         $heure_depart = $donnees[$i][5];
 
-    //         $model -> insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart); 
+    //         $model -> insertCsvData($classement, $longueur, $nb_coureur, $rang_classement, $date_depart, $heure_depart); 
     //     }
     // }
 
