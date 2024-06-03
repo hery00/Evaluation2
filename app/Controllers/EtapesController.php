@@ -69,4 +69,33 @@ class EtapesController extends BaseController
         return view('Layout/layout', $data);
     }
 
+    public function getEtapesdetailsAdmin()
+    {
+        $session = session();
+        $etapesModel = new EtapesModel();
+        $list_etape = $etapesModel->getEtapesByCourse();  
+        $participationDetailsModel = new ParticipationDetailsModel();
+
+        $result = [];
+
+        foreach ($list_etape as $etape)
+        {
+            $id_etape = $etape['id_etape'];
+            $list_participation = $participationDetailsModel->getParticipationsDetailsByEtape($id_etape);
+            $result[$id_etape] = [
+                'etape' => $etape,
+                'participations' => $list_participation
+            ];
+        }
+
+        $data = [
+            'result' => $result
+        ];
+
+        $pageContent = view('Pages/ParticipationDetaillerAdmin', $data);
+        $data = ['content' => $pageContent];
+
+        return view('Layout/layout', $data);
+    }
+
 }

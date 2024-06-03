@@ -36,7 +36,7 @@ class UserController extends BaseController
 
                 if($user['table'] == 'admin')
                 {
-                    return redirect()->to('/accueil');
+                    return redirect()->to('listetapeadmin');
                 }
 
                 elseif($user['table'] == 'equipe')

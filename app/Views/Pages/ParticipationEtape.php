@@ -7,7 +7,7 @@
             <ul>
         <div class="card col-lg-12">
           <div class="card-body">
-            <h2 class="card-title">EQUIPE<?= $id_equipe ?></h2>
+            <h2 class="card-title">EQUIPE   <?= $id_equipe ?></h2>
             <h5 class="card-title"> Étape: <?php echo $etapeData['etape']['nom']; ?>(<?php echo $etapeData['etape']['longueur_km']; ?> km) - <?php echo $etapeData['etape']['nb_coureur']; ?> coureurs</h5>
             
             <table class="table table-hover">
@@ -21,7 +21,7 @@
                     <?php foreach ($etapeData['participations'] as $participation) : ?>
                 <tr>
                     <td><?php echo $participation['coureur_nom']; ?></td>
-                    <td><?php echo $participation['heure_depart']; ?></td>
+                    <td><?php echo $participation['depart']; ?></td>
                 </tr>
                 <?php endforeach; ?>
               </tbody>

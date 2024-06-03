@@ -38,10 +38,11 @@ INSERT INTO Course (nom_course) VALUES ('Course 3');
 CREATE TABLE Etape(
    id_etape serial not null,
    nom VARCHAR(225) ,
-   longueur_km NUMERIC(10,2)  ,
+   longueur_km NUMERIC(10,2),
    nb_coureur INTEGER,
    rang_etape INTEGER,
    id_course INTEGER NOT NULL,
+   depart TIMESTAMP,
    PRIMARY KEY(id_etape),
    FOREIGN KEY(id_course) REFERENCES Course(id_course)
 );
@@ -188,30 +189,14 @@ CREATE TABLE Participation (
     id_etape INTEGER NOT NULL,
     id_coureur INTEGER NOT NULL,
     id_equipe INTEGER NOT NULL,
-    heure_depart TIME,
-    heure_arrivee TIME,
+    arrivee TIMESTAMP,
     FOREIGN KEY (id_etape) REFERENCES Etape(id_etape),
     FOREIGN KEY (id_coureur) REFERENCES Coureur(id_coureur),
     FOREIGN KEY (id_equipe) REFERENCES Equipe(id_equipe)
 );
 
 
-CREATE VIEW ViewEtapeCategorie AS
-SELECT
-    e.id_etape,
-    e.nom AS nom_etape,
-    e.longueur_km,
-    e.nb_coureur,
-    e.rang_etape,
-    e.id_course,
-    c.id_categorie,
-    c.nom AS nom_categorie
-FROM 
-    Etape e
-JOIN 
-    Etapecategorie ec ON e.id_etape = ec.id_etape
-JOIN 
-    Categorie c ON ec.id_categorie = c.id_categorie;
+
 
 CREATE OR REPLACE VIEW vCoureurDetails AS
 SELECT 
@@ -271,8 +256,8 @@ create table import_etape (
 CREATE OR REPLACE VIEW vParticipationDetails AS
 SELECT 
     p.id_participation,
-    p.heure_depart,
-    p.heure_arrivee,
+    p.arrivee,
+    e.depart,
     e.id_etape,
     e.nom AS etape_nom,
     e.longueur_km,

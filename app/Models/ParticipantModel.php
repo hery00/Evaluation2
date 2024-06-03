@@ -10,11 +10,10 @@ class ParticipantModel extends Model
     protected $primaryKey = 'id_participation';
 
     protected $allowedFields = [
-        'id_etape',
-        'id_coureur',
-        'id_equipe',
-        'heure_depart',
-        'heure_arrivee'
+        'id_etape', 
+        'id_coureur', 
+        'id_equipe', 
+        'arrivee'
     ];
 
     public function EfaParticipant($id_etape, $id_equipe, $id_coureur)
@@ -37,7 +36,6 @@ class ParticipantModel extends Model
         ->where('id_equipe', $id_equipe)
         ->countAllResults();
     }
-
 
     public function insertParticipation($id_etape, $id_equipe, $id_coureur)
     {
