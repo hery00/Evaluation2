@@ -95,7 +95,7 @@ class EtapesController extends BaseController
         $pageContent = view('Pages/ParticipationDetaillerAdmin', $data);
         $data = ['content' => $pageContent];
 
-        return view('Layout/layout', $data);
+        return view('Layout_Admin/layout', $data);
     }
 
 }
