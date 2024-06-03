@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ParticipationDetailsModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class EquipeController extends BaseController
@@ -11,4 +12,13 @@ class EquipeController extends BaseController
     {
        return view('Layout/layout');
     }
+
+    public function getParticipationetape()
+    {
+        $participation = new ParticipationDetailsModel();
+        
+
+    }
+
+
 }

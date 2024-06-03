@@ -18,16 +18,12 @@ CREATE TABLE Categorie(
    nom VARCHAR(255)
 );
 
-
-
-
 -- Insérer des catégories dans la table Categorie
 INSERT INTO Categorie (nom) VALUES ('Homme');
 INSERT INTO Categorie (nom) VALUES ('Femme');
 INSERT INTO Categorie (nom) VALUES ('Junior');
 INSERT INTO Categorie (nom) VALUES ('Senior');
 -- Ajoutez d'autres catégories si nécessaire
-
 
 CREATE TABLE Course(
    id_course serial primary key not null,
@@ -54,49 +50,6 @@ INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES (
 INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Mandrosoa', 120.25, 3, 2, 1);
 INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, id_course) VALUES ('Andapa', 120.25, 3, 3, 1);
 
-CREATE TABLE Etapecategorie(
-    id_etapecategorie serial primary key not null,
-    id_categorie INTEGER,
-    id_etape INTEGER,
-    FOREIGN KEY(id_etape) REFERENCES etape(id_etape),
-    FOREIGN KEY(id_categorie) REFERENCES  categorie( id_categorie)
-);
-
--- Pour la catégorie "Homme"
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (1, 1);
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (1, 2);
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (1, 3);
-
--- Pour la catégorie "Femme"
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (2, 1);
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (2, 2);
-
--- Pour la catégorie "Junior"
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (3, 1);
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (3, 2);
-
--- Pour la catégorie "Senior"
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (4, 1);
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (4, 2);
-INSERT INTO Etapecategorie (id_categorie, id_etape) VALUES (4, 3);
-
-
-CREATE VIEW ViewEtapeCategorie AS
-SELECT
-    e.id_etape,
-    e.nom AS nom_etape,
-    e.longueur_km,
-    e.nb_coureur,
-    e.rang_etape,
-    e.id_course,
-    c.id_categorie,
-    c.nom AS nom_categorie
-FROM 
-    Etape e
-JOIN 
-    Etapecategorie ec ON e.id_etape = ec.id_etape
-JOIN 
-    Categorie c ON ec.id_categorie = c.id_categorie;
 
 CREATE TABLE Coureur (
     id_coureur SERIAL PRIMARY KEY,
@@ -199,30 +152,6 @@ INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (17, 1
 INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (18, 2, 2);
 INSERT INTO CoureurCategorie (id_coureur, id_categorie, id_equipe) VALUES (18, 3, 2);
 
-
-
-CREATE OR REPLACE VIEW vCoureurDetails AS
-SELECT 
-    c.id_coureur,
-    c.nom AS coureur_nom,
-    c.numero_dossard,
-    c.genre,
-    c.date_naissance,
-    e.id_equipe,
-    e.nom AS equipe_nom,
-    cat.id_categorie,
-    cat.nom AS categorie_nom
-FROM 
-    Coureur c
-JOIN 
-    equipe e ON c.id_equipe = e.id_equipe
-JOIN 
-    CoureurCategorie cc ON c.id_coureur = cc.id_coureur
-JOIN 
-    Categorie cat ON cc.id_categorie = cat.id_categorie;
-
-
-
 CREATE TABLE Classement (
     id_classement SERIAL PRIMARY KEY,
     id_etape INTEGER NOT NULL,
@@ -266,20 +195,46 @@ CREATE TABLE Participation (
     FOREIGN KEY (id_equipe) REFERENCES Equipe(id_equipe)
 );
 
--- BETSIZARAINA
--- Équipe A
-INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (1, 1, 1, '08:01:30', '10:32:15'); -- Lova
-INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (1, 2, 1, '08:02:45', '10:33:45'); -- Sabrina
 
--- Équipe B
-INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (1, 3, 2, '08:15:30', '10:46:20'); -- Justin
-INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (1, 4, 2, '08:17:10', '10:48:05'); -- Vero
+CREATE VIEW ViewEtapeCategorie AS
+SELECT
+    e.id_etape,
+    e.nom AS nom_etape,
+    e.longueur_km,
+    e.nb_coureur,
+    e.rang_etape,
+    e.id_course,
+    c.id_categorie,
+    c.nom AS nom_categorie
+FROM 
+    Etape e
+JOIN 
+    Etapecategorie ec ON e.id_etape = ec.id_etape
+JOIN 
+    Categorie c ON ec.id_categorie = c.id_categorie;
 
--- Équipe C
-INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (1, 5, 3, '08:31:15', '11:01:55'); -- John
-INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (1, 6, 3, '08:33:20', '11:04:10'); -- Jill
+CREATE OR REPLACE VIEW vCoureurDetails AS
+SELECT 
+    c.id_coureur,
+    c.nom AS coureur_nom,
+    c.numero_dossard,
+    c.genre,
+    c.date_naissance,
+    e.id_equipe,
+    e.nom AS equipe_nom,
+    cat.id_categorie,
+    cat.nom AS categorie_nom
+FROM 
+    Coureur c
+JOIN 
+    equipe e ON c.id_equipe = e.id_equipe
+JOIN 
+    CoureurCategorie cc ON c.id_coureur = cc.id_coureur
+JOIN 
+    Categorie cat ON cc.id_categorie = cat.id_categorie;
 
 
+<<<<<<< Updated upstream
 --Mandrosoa
 -- Équipe A
 INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (2, 1, 1, '09:00:45', '11:31:30'); -- Lova
@@ -313,3 +268,31 @@ create table import_etape (
     date_depart DATE,
     heure_depart TIME
 );
+=======
+CREATE OR REPLACE VIEW vParticipationDetails AS
+SELECT 
+    p.id_participation,
+    p.heure_depart,
+    p.heure_arrivee,
+    e.id_etape,
+    e.nom AS etape_nom,
+    e.longueur_km,
+    e.nb_coureur,
+    e.rang_etape,
+    e.id_course,
+    c.id_coureur,
+    c.nom AS coureur_nom,
+    c.numero_dossard,
+    c.genre,
+    c.date_naissance,
+    eq.id_equipe,
+    eq.nom AS equipe_nom
+FROM 
+    Participation p
+JOIN 
+    Etape e ON p.id_etape = e.id_etape
+JOIN 
+    Coureur c ON p.id_coureur = c.id_coureur
+JOIN 
+    Equipe eq ON p.id_equipe = eq.id_equipe;
+>>>>>>> Stashed changes

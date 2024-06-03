@@ -15,15 +15,18 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">LISTE DE VOS COUREURS </h5>
-            <form id="choixForm" action="<?= base_url('/coureur/equipe') ?>" method="GET">
-              <select class="form-control" id="options" name="idcategorie">
-                <option value="">Sélectionner Catégorie</option>
-                <option value="1">Homme</option>
-                <option value="2">Femme</option>
-                <option value="3">Junior</option>
-                <option value="4">Senior</option>
-              </select>
-            </form>
+            <form id="choixForm" action="<?= base_url('/assignercoureur') ?>" method="GET">
+              <div class="row mb-2">
+                  <label class="col-sm-2 col-form-label">Etapes:</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="id_etape">
+                      <option selected>Choisir Etape</option>
+                      <?php foreach ($etapes as $etape): ?>
+                        <option value="<?= $etape['id_etape'] ?>"><?= $etape['nom'] ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+              </div>
             <table class="table table-hover">
               <thead>
                 <tr>
@@ -47,12 +50,16 @@
                     <td><?= $coureur['date_naissance'] ?></td>
                     <td><?= $coureur['equipe_nom'] ?></td>
                     <td><?= $coureur['categorie_nom'] ?></td>
-                    <td><a href="<?= base_url('/choisircoureur') ?>?id_coureur=<?= $coureur['id_coureur'] ?>&id_equipe=<?= $coureur['id_equipe'] ?>">
-                    <button type="button" class="btn btn-primary choose-participants" data-coureur="<?= $coureur['id_coureur'] ?>">Choisir</button></a></td>
+                    <td><input class="form-check-input" type="radio" name="id_coureur" id="id_coureur" value="<?= $coureur['id_coureur'] ?>" ></td> 
                 </tr>
                 <?php endforeach; ?>
               </tbody>
             </table>
+            <div class="row mb-3">
+                    <button type="submit" class="btn btn-primary">Assigner</button>
+                  </div>
+            </div>
+            </form>
           </div>
         </div>
       </div>

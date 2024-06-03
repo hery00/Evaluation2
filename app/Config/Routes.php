@@ -26,7 +26,8 @@ $routes->post('importcsv', 'ImportController::importcsv');
 
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');
-$routes->get('/listetapescourse', 'EtapesController::etapesByCourse');
+$routes->get('/listecoureur', 'EtapesController::getCoureurEtape');
+$routes->get('/assignercoureur', 'ChoixCoureurController::assignerParticipant');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');
 // $routes->get('clientcontroller/newdevis', 'ClientController::newdevis');

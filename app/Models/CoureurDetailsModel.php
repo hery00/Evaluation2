@@ -8,7 +8,8 @@ use CodeIgniter\Model;
     {
         
         protected $table = 'vcoureurdetails';
-        protected $allowedFields = [
+        protected $allowedFields =
+        [
             'id_coureur',
             'coureur_nom',
             'numero_dossard',
@@ -24,6 +25,12 @@ use CodeIgniter\Model;
         {
             return $this->where('id_equipe', $id_equipe)
             ->findAll();
+        }
+
+        public function getCoureurDetailsByid($id_coureur)
+        {
+            return $this->where('id_coureur', $id_coureur)
+            ->first();
         }
 
         public function getCoureurDetailsByCategorie($id_equipe,$id_categorie)

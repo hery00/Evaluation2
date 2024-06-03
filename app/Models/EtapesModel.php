@@ -11,10 +11,14 @@ class EtapesModel extends Model
     protected $allowedFields = ['nom','longueur_km','nb_coureur','rang_etape','id_course'];
     protected $returnType = 'array';
 
-    public function getEtapesByCourse($id_course)
+    public function getEtapesByCourse()
     {
-        return $this->where('id_course', $id_course)
-                    ->findAll();
+        return $this->findAll();
+    }
+    public function getEtapesById($id_etape)
+    {
+            return $this->where('id_etape', $id_etape)
+            ->first();
     }
 
 }
