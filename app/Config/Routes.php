@@ -24,6 +24,8 @@ $routes->post('form', 'ParticipationController::create');
 $routes->get('import','ImportController::index');
 $routes->post('importcsv', 'ImportController::importcsv');
 
+$routes->get('/generation','CoureurCategorieController::insert');
+
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');
 $routes->get('/listecoureur', 'EtapesController::getCoureurEtape');

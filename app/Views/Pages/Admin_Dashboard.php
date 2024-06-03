@@ -7,6 +7,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Les Etapes de la Course <?= $id_course ?></h5>
+            <a href="<?= base_url('/generation') ?>" class="btn btn-primary">Générer Catégories</a>
             <form id="choixForm" action="<?base_url('') ?>" method="GET">
               <select class="form-control" id="options" name="idcategorie">
               <option value="">Selectionner Categorie</option>

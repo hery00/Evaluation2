@@ -234,7 +234,6 @@ JOIN
     Categorie cat ON cc.id_categorie = cat.id_categorie;
 
 
-<<<<<<< Updated upstream
 --Mandrosoa
 -- Équipe A
 INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (2, 1, 1, '09:00:45', '11:31:30'); -- Lova
@@ -268,7 +267,7 @@ create table import_etape (
     date_depart DATE,
     heure_depart TIME
 );
-=======
+
 CREATE OR REPLACE VIEW vParticipationDetails AS
 SELECT 
     p.id_participation,
@@ -295,4 +294,3 @@ JOIN
     Coureur c ON p.id_coureur = c.id_coureur
 JOIN 
     Equipe eq ON p.id_equipe = eq.id_equipe;
->>>>>>> Stashed changes
