@@ -25,6 +25,10 @@ class ImportController extends BaseController
         $cheminTemporaire = $file->getTempName();
         $this->import_csv($cheminTemporaire);
        // return redirect()->back()->with('success', 'File imported successfully.');
+
+        $file2 = $this->request->getFile('fichier2');
+        $cheminTemporaire2 = $file2->getTempName();
+        $this->import_csv($cheminTemporaire2);
     }
 
     public function import_csv($filepath, $ligneDeb = 1, $ligneFin = -1, $separateur = ','/*, $enclosure = '"'*/)

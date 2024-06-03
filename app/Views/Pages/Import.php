@@ -4,7 +4,7 @@
         <div class="card">
         <h3 class="card-header">Importation de données</h3>
           <div class="card-body">
-            <form action="<?= base_url("importcsv"); ?>" method="POST">
+          <form method="post" action="<?= base_url('importcsv') ?>" enctype="multipart/form-data">
               <div class="col-lg-6">
                 <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Importation Etapes</label>
