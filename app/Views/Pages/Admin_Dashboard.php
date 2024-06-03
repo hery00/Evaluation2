@@ -6,7 +6,7 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Les Etapes de la Course</h5>
+            <h5 class="card-title">Les Etapes de la Course <?= $id_course ?></h5>
             <form id="choixForm" action="<?base_url('') ?>" method="GET">
               <select class="form-control" id="options" name="idcategorie">
               <option value="">Selectionner Categorie</option>
@@ -30,13 +30,13 @@
               <tbody>
                 <?php foreach ($etapes as $etape): ?>
                 <tr>
-                  <form method="get" action="<?= base_url('') ?>">
+                  <form method="get" action="<?= base_url('form') ?>">
                   <th scope="row"><?= $etape['id_etape'] ?></th>
                   <td><?= $etape['nom'] ?></td>
                   <td><?= $etape['longueur_km'] ?></td>
                   <td><?= $etape['nb_coureur'] ?></td>
                   <td><?= $etape['rang_etape'] ?></td>
-                  <td><button type="submit" class="btn btn-primary choose-participants" data-toggle="modal" data-target="#participantsModal">Choisir des Participants</button></td>
+                  <td><button type="submit" class="btn btn-primary choose-participants" data-toggle="modal" data-target="#participantsModal">Saisir le temps</button></td>
                   </form>
                 </tr>
                 <?php endforeach; ?>

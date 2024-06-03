@@ -35,7 +35,7 @@ class EtapesController extends BaseController
         [
             'content' => view('Pages/admin_dashboard',$data)
         ];
-        return view('Layout/layout',$data);
+        return view('Layout_Admin/layout',$data);
     }
 
 }

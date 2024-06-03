@@ -14,6 +14,13 @@ class CoursesController extends BaseController
         $data['courses'] = $courseModel->getCourses();
         return view('Layout/sidebar', $data);
     }
+
+    public function dash_admin()
+    {
+        $courseModel = new CoursesModel();
+        $data['courses'] = $courseModel->getCourses();
+        return view('Layout_Admin/sidebar', $data);
+    }
     
 }
 

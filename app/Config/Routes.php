@@ -14,9 +14,11 @@ $routes->post('/login', 'UserController::process');
 $routes->get('/accueil', 'UserController::accueil');
 
 $routes->get('adIndex', 'Admin::index');
-$routes->get('/admin', 'Admin::admin');
 
 $routes->get('/listetapescourse', 'EtapesController::etapesCourseAdmin');
+$routes->get('dashboard', 'CoursesController::dash_admin');
+
+$routes->post('form', 'ParticipationController::create');
 
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');

@@ -303,3 +303,4 @@ INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_
 
 -- Équipe C
 INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (3, 6, 3, '08:33:30', '11:18:20'); -- Jill
+
