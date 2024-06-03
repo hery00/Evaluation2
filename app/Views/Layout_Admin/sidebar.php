@@ -6,10 +6,16 @@ $courses = $courseService->getCourses();
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link " href="<?= base_url('import') ?>">
+            <a class="nav-link " href="<?= base_url('') ?>">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
+        <li class="nav-item">
+        <a class="nav-link " href="<?= base_url('import') ?>">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Import de données</span>
+        </a>
+        </li>
         </li>
         <li class="nav-item">
             <a class="nav-link " href="<?= base_url('linkPoint') ?>">
@@ -24,9 +30,9 @@ $courses = $courseService->getCourses();
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="<?= base_url('import') ?>">
+            <a href="<?= base_url('/generate-categories') ?>" class="btn btn-primary">Générer Catégories</a>
             <i class="bi bi-menu-button-wide"></i>
-                <span>Import Etapes</span>
+                <span>Liste Des Etapes</span>
             </a>
         </li>
         <li class="nav-item">

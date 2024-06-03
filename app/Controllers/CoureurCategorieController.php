@@ -15,52 +15,46 @@ class CoureurCategorieController extends BaseController
         $coureurCategorieModel  = new CoureurCategorieModel();
 
         $coureurs = $coureurModel->getCoureur();
-        $currentYear = date('Y');
+        $currentDate = new \DateTime();
 
         foreach ($coureurs as $coureur) {
-            $birthYear = date('Y', strtotime($coureur['date_naissance']));
-            $age = $currentYear - $birthYear;
+            $birthDate = new \DateTime($coureur['date_naissance']);
+            $age = $currentDate->diff($birthDate)->y;
 
             if ($age < 18) {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 3
+                    'id_categorie' => 3 // Junior
                 ];
-
                 $coureurCategorieModel->insert($data);
             }
 
-            if ($age > 18) {
+            if ($age >= 18) {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 4
+                    'id_categorie' => 4 // Senior
                 ];
-
                 $coureurCategorieModel->insert($data);
             }
 
             if (strtolower($coureur['genre']) == 'homme') {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 1
+                    'id_categorie' => 1 // Homme
                 ];
-
                 $coureurCategorieModel->insert($data);
             }
 
             if (strtolower($coureur['genre']) == 'femme') {
                 $data = [
                     'id_coureur' => $coureur['id_coureur'],
-                    'id_categorie' => 2
+                    'id_categorie' => 2 // Femme
                 ];
-
                 $coureurCategorieModel->insert($data);
             }
         }
 
         return redirect()->to('Pages/admin_dashboard');
-
     }
-    
 }
 ?>

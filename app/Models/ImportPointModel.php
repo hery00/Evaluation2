@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ImportEtapeModel extends Model
+class ImportPointModel extends Model
 {
     protected $table = 'import_etape'; // Le nom de votre table
     protected $primaryKey = 'id'; // Supposons que vous avez une colonne id comme clé primaire

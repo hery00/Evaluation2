@@ -255,6 +255,16 @@ create table import_etape (
     heure_depart TIME
 );
 
+create table import_resultat(
+    etape_rang INTEGER,
+    numero_dossard INTEGER,
+    nom VARCHAR(225),
+    genre VARCHAR(25),
+    date_naissance DATE,
+    equipe VARCHAR(25),
+    arrivee TIMESTAMP
+);
+
 CREATE OR REPLACE VIEW vParticipationDetails AS
 SELECT 
     p.id_participation,

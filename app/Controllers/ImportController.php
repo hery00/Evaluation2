@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ImportModel;
 use App\Models\ImportEtapeModel;
+use App\Models\ImportResultatModel;
 use CodeIgniter\Files\File;
 
 class ImportController extends BaseController
@@ -36,7 +37,6 @@ class ImportController extends BaseController
 
         for ($i = 1; $i < count($tab1); $i++) 
         {
-            $ligne = $tab1[$i];
             $etapemodel = new ImportEtapeModel();
 
             $etape = $tab1[$i][0];
@@ -47,6 +47,22 @@ class ImportController extends BaseController
             $heure_depart = $tab1[$i][5];
 
             $etapemodel -> insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart); 
+        }
+
+
+        for ($i = 1; $i < count($tab2); $i++) 
+        {
+            $resultatmodel = new ImportResultatModel();
+
+            $etape_rang = $tab2[$i][0];
+            $numero_dossard = $tab2[$i][1];
+            $nom = $tab2[$i][2];
+            $genre = $tab2[$i][3];
+            $date_naissance = $tab2[$i][4];
+            $equipe = $tab2[$i][5];
+            $arrivee = $tab2[$i][5];
+
+            $resultatmodel -> insertCsvData($etape_rang, $numero_dossard, $nom, $genre, $date_naissance, $equipe, $arrivee); 
         }
         //var_dump($tab2);
     }

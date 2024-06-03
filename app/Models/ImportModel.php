@@ -55,14 +55,7 @@ class ImportModel extends Model
             //     $model -> insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart); 
             // }
         }
-    public function insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart)
-    {
-        $sql = "INSERT INTO import_etape VALUES ('%s','%d','%d','%d','%s','%s')";
-        $sql = sprintf($sql,$etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart);
-        echo $sql;
-        $this->db->query($sql);
-
-    }
+    
 
 
 }
