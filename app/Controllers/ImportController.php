@@ -10,7 +10,7 @@ class ImportController extends BaseController
 {
     public function index(): string
     {
-        return view('Import');
+        return view('Pages/Import');
     }
 
     public function importcsv()
@@ -24,7 +24,7 @@ class ImportController extends BaseController
        // return redirect()->back()->with('success', 'File imported successfully.');
     }
 
-    public function import_csv($filepath, $ligneDeb = 1, $ligneFin = -1, $separateur = ',', $enclosure = '"')
+    public function import_csv($filepath, $ligneDeb = 1, $ligneFin = -1, $separateur = ','/*, $enclosure = '"'*/)
     {
         if (!file_exists($filepath) || !is_readable($filepath)) {
             return false;
@@ -33,7 +33,7 @@ class ImportController extends BaseController
         $donnees = [];
         if (($fichier_handle = fopen($filepath, 'r')) !== false) {
             $nligne = 1;
-            while (($ligne = fgetcsv($fichier_handle, 1000, $separateur, $enclosure)) !== false) {
+            while (($ligne = fgetcsv($fichier_handle, 1000, $separateur)) !== false) {
                 if ($ligneFin > 0) {
                     if ($nligne >= $ligneDeb && $nligne <= $ligneFin) {
                         $donnees[] = $ligne;
@@ -54,17 +54,14 @@ class ImportController extends BaseController
             // $ligne = $donnees[$i];
             $model = new ImportModel();
 
-            $type_maison = $donnees[$i][0];
-            $description = $donnees[$i][1];
-            $surface = $donnees[$i][2];
-            $code_travaux = $donnees[$i][3];
-            $type_travaux = $donnees[$i][4];
-            $unite = $donnees[$i][5];
-            $prix_unitaire = $donnees[$i][6];
-            $quantite = $donnees[$i][7];
-            $duree_travaux = $donnees[$i][8];
+            $etape = $donnees[$i][0];
+            $longueur = $donnees[$i][1];
+            $nb_coureur = $donnees[$i][2];
+            $rang_etape = $donnees[$i][3];
+            $date_depart = $donnees[$i][4];
+            $heure_depart = $donnees[$i][5];
 
-            $model -> insertCsvData($type_maison, $description, $surface, $code_travaux, $type_travaux, $unite, $prix_unitaire, $quantite, $duree_travaux); 
+            $model -> insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart); 
         }
     }
 

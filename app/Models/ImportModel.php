@@ -6,9 +6,9 @@ use CodeIgniter\Model;
 
 class ImportModel extends Model
 {
-    protected $table = 'import_csvs';
+    protected $table = 'import_etape';
 
-    protected $allowedFields = ['type_maison', 'description', 'surface', 'code_travaux', 'type_travaux', 'unite', 'prix_unitaire', 'quantite', 'duree_travaux'];
+    protected $allowedFields = ['etape', 'longueur', 'nb_coureur', 'rang_etape', 'date_depart', 'heure_depart'];
 
     // Méthode pour insérer les données
     // public function insertCsvData($data)
@@ -16,10 +16,10 @@ class ImportModel extends Model
     //     return $this->insert($data);
     // }
 
-    public function insertCsvData($type_maison, $description, $surface, $code_travaux, $type_travaux, $unite, $prix_unitaire, $quantite, $duree_travaux)
+    public function insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart)
     {
-        $sql = "INSERT INTO import_csvs VALUES ('%s','%s','%s','%d','%s','%s','%d','%d','%d')";
-        $sql = sprintf($sql,$type_maison, $description, $surface, $code_travaux, $type_travaux, $unite, $prix_unitaire, $quantite, $duree_travaux);
+        $sql = "INSERT INTO import_etape VALUES ('%s','%d','%d','%d','%s','%s')";
+        $sql = sprintf($sql,$etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart);
         echo $sql;
         $this->db->query($sql);
 

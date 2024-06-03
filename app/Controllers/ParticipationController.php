@@ -7,8 +7,13 @@ class ParticipationController extends BaseController
 {
     public function index()
     {
-        return view('Pages/formulaire_temps');
+        $data = [
+            'content' => view('Pages/formulaire_temps')
+        ];
+        return view('Layout_Admin/layout',$data);
     }
+
+    
     public function create()
 {
     helper(['form', 'url']);
@@ -17,10 +22,8 @@ class ParticipationController extends BaseController
     $id_etape = $this->request->getPost('id_etape');
     $id_coureur = $this->request->getPost('id_coureur');
     $id_equipe = $this->request->getPost('id_equipe');
+    $heure_depart = $this->request->getPost('heure_depart');
     $heure_arrivee = $this->request->getPost('heure_arrivee');
-
-    // Définir l'heure de départ si c'est la première étape
-    $heure_depart = ($id_etape == 1) ? '08:00:00' : null;
 
     // Préparer les données pour l'insertion
     $data = [
@@ -37,7 +40,7 @@ class ParticipationController extends BaseController
 
     // Charger la vue avec le formulaire
     $data['validation'] = $this->validator;
-    $content = view('admin_dashboard', $data);
+    $content = view('Pages/admin_dashboard', $data);
 
     // Retourner la vue incluant le layout
     return view('Layout_Admin/layout', ['content' => $content]);

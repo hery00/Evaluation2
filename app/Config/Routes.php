@@ -18,7 +18,11 @@ $routes->get('adIndex', 'Admin::index');
 $routes->get('/listetapescourse', 'EtapesController::etapesCourseAdmin');
 $routes->get('dashboard', 'CoursesController::dash_admin');
 
+$routes->get('formulaire', 'ParticipationController::index');
 $routes->post('form', 'ParticipationController::create');
+
+$routes->get('import','ImportController::index');
+$routes->post('importcsv', 'ImportController::importcsv');
 
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');

@@ -30,7 +30,7 @@
               <tbody>
                 <?php foreach ($etapes as $etape): ?>
                 <tr>
-                  <form method="get" action="<?= base_url('form') ?>">
+                  <form method="get" action="<?= base_url('formulaire') ?>">
                   <th scope="row"><?= $etape['id_etape'] ?></th>
                   <td><?= $etape['nom'] ?></td>
                   <td><?= $etape['longueur_km'] ?></td>

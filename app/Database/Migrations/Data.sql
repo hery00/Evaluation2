@@ -304,3 +304,12 @@ INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_
 -- Équipe C
 INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (3, 6, 3, '08:33:30', '11:18:20'); -- Jill
 
+
+create table import_etape (
+    etape VARCHAR(225),
+    longueur NUMERIC(10,2),
+    nb_coureur INTEGER,
+    rang_etape INTEGER,
+    date_depart DATE,
+    heure_depart TIME
+);
