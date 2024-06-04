@@ -23,5 +23,11 @@ class CoureurCategorieModel extends Model
         
         return $this->insert($data);
     }
+
+    public function selectAllCoureurCategorie()
+    {
+        
+        return $this->findAll();
+    }
 }
 ?>

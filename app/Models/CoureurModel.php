@@ -9,7 +9,7 @@ use CodeIgniter\Model;
         
         protected $table = 'coureur';
         protected $primaryKey = 'id_coureur';
-        protected $allowedFields = ['nom', 'numero_dossard', 'genre', 'date_naissance', 'id_equipe'];
+        protected $allowedFields = ['id_coureur', 'nom', 'numero_dossard', 'genre', 'date_naissance', 'id_equipe'];
 
         public function getCoureurByEquipe($id_equipe)
         {
