@@ -123,6 +123,7 @@ SELECT
     date_naissance,
     id_equipe,
     equipe_nom,
+
     CASE 
         WHEN arrivee IS NULL THEN '' -- Renvoie une chaîne vide si arrivee est nulle
         ELSE (DATE_PART('day', arrivee - depart) * 24 +
@@ -135,6 +136,43 @@ SELECT
         ELSE NULL -- Renvoie NULL si arrivee est nulle
     END AS rang
 FROM vparticipationdetails;
+
+
+create or replace view point_classement_generale as
+SELECT
+    cg.*,
+    COALESCE(p.points, 0) AS points
+FROM
+    classement_general cg
+LEFT JOIN
+    points p ON cg.rang = p.rang_point;
+
+create or replace view point_classement_generale_categorie as
+select 
+    pcg.id_participation,
+    pcg.id_etape,
+    cc.id_coureur,
+    pcg.etape_nom,
+    pcg.longueur_km,
+    pcg.nb_coureur,
+    pcg.rang_etape,
+    pcg.coureur_nom,
+    cc.id_categorie,
+    c.nom as nom_categorie,
+    pcg.numero_dossard,
+    pcg.date_naissance,
+    pcg.id_equipe,
+    pcg.equipe_nom,
+    pcg.chronos,
+    pcg.rang,
+    pcg.points
+    FROM point_classement_generale pcg
+    JOIN coureurcategorie cc
+    ON pcg.id_coureur = cc.id_coureur
+    JOIN Categorie c
+    ON cc.id_categorie = c.id_categorie;
+
+
 
 
 
@@ -165,14 +203,7 @@ CREATE TABLE Participation (
     FOREIGN KEY (id_equipe) REFERENCES Equipe(id_equipe)
 );
 
-create or replace view point_classement_generale as
-SELECT
-    cg.*,
-    COALESCE(p.points, 0) AS points
-FROM
-    classement_general cg
-LEFT JOIN
-    points p ON cg.rang = p.rang_point;
+
 
 
 

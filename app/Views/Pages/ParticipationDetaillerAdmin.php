@@ -12,7 +12,6 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-
                         <th scope="col">Nom du Coureur</th>
                         <th scope="col">Nom de l'Équipe</th>
                         <th scope="col">Genre</th>
@@ -34,7 +33,6 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            
           </div>
         </div>
         <?php endforeach; ?>

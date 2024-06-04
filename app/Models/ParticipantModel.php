@@ -8,7 +8,6 @@ class ParticipantModel extends Model
 {
     protected $table = 'participation';
     protected $primaryKey = 'id_participation';
-
     protected $allowedFields = [
         'id_etape', 
         'id_coureur', 

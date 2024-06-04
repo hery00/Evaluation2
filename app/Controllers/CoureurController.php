@@ -21,7 +21,6 @@ class CoureurController extends BaseController
         $session->set('nb_coureur',$nb_coureur);
     }
 
-        
         $CoureurModel = new CoureurModel();
         if(isset($_GET['idcategorie']))
         {
@@ -37,4 +36,6 @@ class CoureurController extends BaseController
         ];
         return view('Layout/layout',$data);
     }
+
+    
 }

@@ -7,9 +7,13 @@ use App\Models\EtapesModel;
 use App\Models\CoureurModel;
 use App\Models\ParticipationDetailsModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use Config\Services;
+
 
 class EtapesController extends BaseController
 {
+
+        
     public function getCoureurEtape()
     {
         $session = session();  
@@ -24,7 +28,6 @@ class EtapesController extends BaseController
         ];
         return view('Layout/layout',$data);
     }
-
     public function etapesCourseAdmin()
     {
         $id_course = $this->request->getGet('idcourse');
