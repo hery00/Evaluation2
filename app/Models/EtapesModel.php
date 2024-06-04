@@ -27,6 +27,10 @@ class EtapesModel extends Model
             return $this->where('id_etape', $id_etape)
             ->first();
     }
+    public function getAllEtapes()
+    {
+        return $this->findAll();
+    }
 
     public function insert_etapecsv()
     {

@@ -41,7 +41,8 @@ $routes->get('/listetapeadmin', 'EtapesController::getEtapesdetailsAdmin');
 $routes->get('/assignercoureur', 'ChoixCoureurController::assignerParticipant');
 
 
-$routes->get('/classementgeneral', 'PointClassementGeneraleController::Pointgeneral');
+$routes->get('/classementgeneral', 'PointClassementGeneraleController::classementgeneral');
+$routes->get('/filtreClassement', 'PointClassementGeneraleController::filtreClassement');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');
 // $routes->get('clientcontroller/newdevis', 'ClientController::newdevis');

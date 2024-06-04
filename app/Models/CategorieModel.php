@@ -10,9 +10,9 @@ class CategorieModel extends Model
     protected $primaryKey = 'id_categorie';
     protected $allowedFields = ['nom'];
 
-    public function selectCategories()
+    public function getAllCategories()
     {
-        return $this->findAll();
+        return $this->findAll(); 
     }
 }
 ?>

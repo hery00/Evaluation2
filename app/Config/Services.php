@@ -3,6 +3,9 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseService;
+use App\Services\CategorieService;
+use App\Services\EquipeService;
+use App\Services\EtapeService;
 
 /**
  * Services Configuration file.
@@ -29,4 +32,6 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+     
 }
