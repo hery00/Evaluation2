@@ -45,6 +45,30 @@ class PointClassementGeneraleModel extends Model
     {
         return $this->where('id_categorie', $idcategorie)->findAll();
     }
+
+    public function sumPointsEquipeByCategorie($idcategorie)
+    {
+        $this->select('id_equipe,MAX(equipe_nom) as equipe_nom ,MAX(rang) as rang,SUM(points) as total_points');
+        $this->where('id_categorie',$idcategorie);
+        $this->groupBy('id_equipe');
+        $this->orderBy('rang');
+        return $this->findAll();
+    }
+    public function sumPointsEquipeByEtape($idetape)
+    {
+        $this->select('id_equipe,MAX(equipe_nom) as equipe_nom ,MAX(rang) as rang,SUM(points) as total_points');
+        $this->where('id_etape',$idetape);
+        $this->groupBy('id_equipe');
+        $this->orderBy('rang');
+        return $this->findAll();
+    }
+    public function sumPointsEquipe()
+    {
+        $this->select('id_equipe,MAX(equipe_nom) as equipe_nom ,MAX(rang) as rang,SUM(points) as total_points');
+        $this->groupBy('id_equipe');
+        $this->orderBy('rang');
+        return $this->findAll();
+    }
     
 
 }

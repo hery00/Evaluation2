@@ -57,22 +57,25 @@ class ParticipantModel extends Model
         return $this->where('id_participation', $id_participation)->first();
     }
 
-
-
-    public function updateArrivee($id_etape, $id_coureur, $id_equipe, $nouvelle_arrivee)
+    public function updateArrivee($idParticipant, $idParticipation, $idCoureur, $arrivee)
     {
-        $data = [
-            'arrivee' => $nouvelle_arrivee
-        ];
+        // Vérifier si les données à mettre à jour existent
+        $participant = $this->find($idParticipant);
 
-        // Debugging: Print the data to be updated
-        log_message('debug', 'Updating participation with data: ' . print_r($data, true));
+        if ($participant) {
+            // Données à mettre à jour
+            $data = [
+                'id_participation' => $idParticipation,
+                'id_coureur' => $idCoureur,
+                'arrivee' => $arrivee,
+            ];
 
-        $this->where('id_etape', $id_etape)
-             ->where('id_coureur', $id_coureur)
-             ->where('id_equipe', $id_equipe)
-             ->set($data) // Ensure set is used to update the data
-             ->update();
+            // Mettre à jour les données
+            return $this->update($idParticipant, $data);
+        } else {
+            // Gérer le cas où il n'y a pas de données à mettre à jour
+            return false;
+        }
     }
 }
 

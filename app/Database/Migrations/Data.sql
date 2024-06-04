@@ -172,10 +172,6 @@ select
     JOIN Categorie c
     ON cc.id_categorie = c.id_categorie;
 
-
-
-
-
 create table points(
     id_point serial primary key not null,
     rang_point INTEGER,
@@ -202,10 +198,6 @@ CREATE TABLE Participation (
     FOREIGN KEY (id_coureur) REFERENCES Coureur(id_coureur),
     FOREIGN KEY (id_equipe) REFERENCES Equipe(id_equipe)
 );
-
-
-
-
 
 
 --Mandrosoa
