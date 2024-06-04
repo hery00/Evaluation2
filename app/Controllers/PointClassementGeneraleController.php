@@ -8,12 +8,18 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class PointClassementGeneraleController extends BaseController
 {
-    public function index()
+    public function Pointgeneral()
     {
+        $indice = $this->request->getGet('indice');
         $PointClassementGeneraleModel = new PointClassementGeneraleModel();
-        $data['classement'] = $PointClassementGeneraleModel->getPointClassementGenerale();
-
-        return view('classement_view', $data);
+        $data['classements'] = $PointClassementGeneraleModel->getPointClassementGenerale();
+        $data['content'] = view('Pages/pointclassementgeneral', $data);
+        if($indice==1)
+        {
+            return view('Layout/layout', $data);
+        }
+        return view('Layout_Admin/layout', $data);
+       
     }
 
     public function getByEquipe()

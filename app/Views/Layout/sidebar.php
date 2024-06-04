@@ -23,7 +23,7 @@ $courses = $courseService->getCourses();
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="<?= base_url('/classementgeneral') ?>?indice=1">
                         <i class="bi bi-circle"></i><span>Classement général</span>
                     </a>
                 </li>

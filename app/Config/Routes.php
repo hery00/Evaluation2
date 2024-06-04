@@ -37,6 +37,9 @@ $routes->get('/listecoureur', 'EtapesController::getCoureurEtape');
 $routes->get('/etapeparticipation', 'EtapesController::getEtapesdetails');
 $routes->get('/listetapeadmin', 'EtapesController::getEtapesdetailsAdmin');
 $routes->get('/assignercoureur', 'ChoixCoureurController::assignerParticipant');
+
+
+$routes->get('/classementgeneral', 'PointClassementGeneraleController::Pointgeneral');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');
 // $routes->get('clientcontroller/newdevis', 'ClientController::newdevis');

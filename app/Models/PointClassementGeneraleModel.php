@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class PointClassementGeneraleModel extends Model
 {
-    protected $table = 'classement_general';
+    protected $table = 'point_classement_generale';
     protected $primaryKey = 'id_participation';
     protected $allowedFields = [
         'id_participation',
@@ -21,7 +21,7 @@ class PointClassementGeneraleModel extends Model
         'date_naissance',
         'id_equipe',
         'equipe_nom',
-        'Chronos',
+        'chronos',
         'rang',
         'points'
     ];
