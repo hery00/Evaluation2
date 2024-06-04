@@ -77,6 +77,12 @@ class ParticipantModel extends Model
             return false;
         }
     }
+
+    // public function insertArrivee($arrivee)
+    // {
+    //     $data = ['arrivee' => $arrivee] ;
+    //     return $this->insert($data);   
+    // }
 }
 
 

@@ -32,17 +32,5 @@ class EtapesModel extends Model
         return $this->findAll();
     }
 
-    public function insert_etapecsv()
-    {
-        $query = $this->db->query
-        ('
-            INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, depart)
-            SELECT etape, longueur, nb_coureur, rang_etape, TIMESTAMP WITH TIME ZONE (date_depart AT TIME ZONE \'UTC\' + heure_depart) AS depart
-            FROM import_etape
-            GROUP BY etape, longueur, nb_coureur, rang_etape, date_depart, heure_depart
-        
-        ');
-
-        return $query->resultID; 
-    }
+   
 }

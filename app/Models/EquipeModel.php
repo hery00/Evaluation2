@@ -15,4 +15,15 @@ class EquipeModel extends Model
         return $this->findAll();
     }
 
+    public function insertEquipe($nom, $login, $passe)
+    {
+        $data = [
+            'nom' => $nom,
+            'login' => $login,
+            'passe' => $passe
+         ];
+    
+        return $this->insert($data);   
+    }
+
 }

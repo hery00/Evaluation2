@@ -34,5 +34,26 @@ use CodeIgniter\Model;
         {
             return $this->findAll();        
         }
-    
+
+        public function insertCoureur($nom, $numero_dossard, $genre, $date_naissance)
+        {
+            $data = [
+                'nom' => $nom,
+                'numero_dossard' => $numero_dossard,
+                'genre' => $genre,
+                'date_naissance' => $date_naissance
+             ];
+        
+            return $this->insert($data);   
+        }
+
+        public function insertIdEquipe($id)
+        {
+            $data = [
+                'id_equipe' => $id
+             ];
+        
+            return $this->insert($data);   
+            
+        }
 }

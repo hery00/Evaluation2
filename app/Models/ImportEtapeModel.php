@@ -44,4 +44,20 @@ class ImportEtapeModel extends Model
         $this->db->query($sql);
 
     }
+
+    public function insert_etapecsv()
+    {
+        $query = 'INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape,depart)
+            SELECT 
+                etape, 
+                longueur, 
+                nb_coureur, 
+                rang_etape,
+                (date_depart + heure_depart) AS depart
+            FROM import_etape
+            GROUP BY etape, longueur, nb_coureur, rang_etape, date_depart,heure_depart';
+
+        $this->db->query($query);
+    }
+
 }

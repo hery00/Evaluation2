@@ -32,7 +32,7 @@ class ImportPointModel extends Model
      * @param string $heure_depart
      * @return bool
      */
-    public function insertCsvData($classement, $point)
+    public function insertCsvPoint($classement, $point)
     {
         $sql = "INSERT INTO import_point VALUES ('%d','%d')";
         $sql = sprintf($sql,$classement, $point);
@@ -40,4 +40,11 @@ class ImportPointModel extends Model
         $this->db->query($sql);
 
     }
+
+    public function insert_point_base()
+    {
+        $sql = "INSERT INTO points (rang_point, points) SELECT classement, points FROM import_point GROUP BY classement, points ";
+        $this->db->query($sql);
+    }
+
 }

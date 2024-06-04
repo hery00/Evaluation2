@@ -26,7 +26,7 @@ INSERT INTO Categorie (nom) VALUES ('Senior');
 -- Ajoutez d'autres catégories si nécessaire
 
 CREATE TABLE Course(
-   id_course serial primary key not null,
+   id_course serial primary key,
    nom_course VARCHAR(255)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE Etape(
    longueur_km NUMERIC(10,2),
    nb_coureur INTEGER,
    rang_etape INTEGER,
-   id_course INTEGER NOT NULL,
+   id_course INTEGER,
    depart TIMESTAMP,
    PRIMARY KEY(id_etape),
    FOREIGN KEY(id_course) REFERENCES Course(id_course)
@@ -56,11 +56,11 @@ VALUES
 
 CREATE TABLE Coureur (
     id_coureur SERIAL PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    numero_dossard INTEGER NOT NULL,
-    genre VARCHAR(10) NOT NULL,
-    date_naissance DATE NOT NULL,
-    id_equipe INTEGER NOT NULL,
+    nom VARCHAR(100) ,
+    numero_dossard INTEGER UNIQUE,
+    genre VARCHAR(10) ,
+    date_naissance DATE ,
+    id_equipe INTEGER ,
     FOREIGN KEY (id_equipe) REFERENCES Equipe(id_equipe)
 );
 
@@ -190,9 +190,9 @@ VALUES
 
 CREATE TABLE Participation (
     id_participation SERIAL PRIMARY KEY,
-    id_etape INTEGER NOT NULL,
-    id_coureur INTEGER NOT NULL,
-    id_equipe INTEGER NOT NULL,
+    id_etape INTEGER,
+    id_coureur INTEGER,
+    id_equipe INTEGER,
     arrivee TIMESTAMP,
     FOREIGN KEY (id_etape) REFERENCES Etape(id_etape),
     FOREIGN KEY (id_coureur) REFERENCES Coureur(id_coureur),
@@ -278,3 +278,8 @@ JOIN
     Coureur c ON p.id_coureur = c.id_coureur
 JOIN 
     Equipe eq ON p.id_equipe = eq.id_equipe;
+
+CREATE OR REPLACE VIEW vEquipe AS 
+SELECT e.id_equipe, i.equipe
+FROM import_resultat i
+JOIN equipe e ON e.nom = i.equipe;

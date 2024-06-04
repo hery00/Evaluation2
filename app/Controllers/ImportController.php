@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\EquipeModel;
 use App\Models\EtapesModel;
 use App\Models\ImportModel;
 use App\Models\ImportEtapeModel;
@@ -36,12 +37,10 @@ class ImportController extends BaseController
 
         $tab1 = $importModel -> import_csv($cheminTemporaire);
         $tab2 = $importModel -> import_csv($cheminTemporaire2);
-
-        $etapesmodel = new EtapesModel();
+        $etapemodel = new ImportEtapeModel();
 
         for ($i = 1; $i < count($tab1); $i++) 
         {
-            $etapemodel = new ImportEtapeModel();
 
             $etape = $tab1[$i][0];
             $longueur = $tab1[$i][1];
@@ -53,7 +52,7 @@ class ImportController extends BaseController
             $etapemodel -> insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart); 
         }
         
-        $etapesmodel->insert_etapecsv();
+        $etapemodel->insert_etapecsv();
 
         for ($i = 1; $i < count($tab2); $i++) 
         {
@@ -69,11 +68,15 @@ class ImportController extends BaseController
 
             $resultatmodel -> insertCsvData($classement_rang, $numero_dossard, $nom, $genre, $date_naissance, $equipe, $arrivee); 
         }
+
+        $importModel->insertCsvEquipe();
+        $importModel->insertCsvCoureur();
+        // $importModel->insertCsvArrivee();
         
         //var_dump($tab2);
     }
 
-
+    //POINTS
     public function import_points()
     {
         helper(['form', 'url']);
@@ -87,18 +90,19 @@ class ImportController extends BaseController
 
         $tab1 = $importModel -> import_csv($cheminTemporaire);
         // var_dump($tab1);
+        $PointModel = new ImportPointModel();
         
         for ($i = 1; $i < count($tab1); $i++) 
         {
-            $PointModel = new ImportPointModel();
 
             $classement = $tab1[$i][0];
             $point = $tab1[$i][1];
 
-            $PointModel -> insertCsvData($classement, $point); 
+            $PointModel -> insertCsvPoint($classement, $point); 
         }
 
-
+        $PointModel->insert_point_base();
+         
     }
 
     public function link_point()
@@ -109,32 +113,7 @@ class ImportController extends BaseController
         return view('Layout_Admin/layout',$data);
     }
 
-    public function import_equipe()
-    {
-        helper(['form', 'url']);
-        $importModel = new ImportModel();
-        
-        $file = $this->request->getFile('fichier');
-        //$filepath = WRITEPATH . 'uploads/' . $file->store();
-        $cheminTemporaire = $file->getTempName();
-        
-       // return redirect()->back()->with('success', 'File imported successfully.');
-
-        $tab1 = $importModel -> import_csv($cheminTemporaire);
-        // var_dump($tab1);
-        
-        for ($i = 1; $i < count($tab1); $i++) 
-        {
-            $PointModel = new ImportPointModel();
-
-            $classement = $tab1[$i][0];
-            $point = $tab1[$i][1];
-
-            $PointModel -> insertCsvData($classement, $point); 
-        }
-
-    }
-
+    
 
     //     for ($i = 1; $i < count($donnees); $i++) {
     //         // $ligne = $donnees[$i];

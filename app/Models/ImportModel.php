@@ -40,22 +40,52 @@ class ImportModel extends Model
             }
 
             return $donnees;
-
-            // for ($i = 1; $i < count($donnees); $i++) {
-            //     // $ligne = $donnees[$i];
-            //     $model = new ImportModel();
-
-            //     $etape = $donnees[$i][0];
-            //     $longueur = $donnees[$i][1];
-            //     $nb_coureur = $donnees[$i][2];
-            //     $rang_etape = $donnees[$i][3];
-            //     $date_depart = $donnees[$i][4];
-            //     $heure_depart = $donnees[$i][5];
-
-            //     $model -> insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart); 
-            // }
         }
     
+    public function insertCsvEquipe()
+    {
+        $sql = 'SELECT equipe FROM import_resultat GROUP BY equipe';
+        $query = $this->db->query($sql);
+        foreach($query->getResultArray() as $row)
+        {
+            $equipeModel = new EquipeModel();
+            $nom = $row['equipe'];
+            $login = $row['equipe']."@gmail.com";
+            $passe = $nom;
+
+            $equipeModel->insertEquipe($nom, $login, $passe);
+        }
+    }
+    
+    public function insertCsvCoureur()
+    {
+        $sql = 'SELECT numero_dossard, nom, genre, date_naissance FROM import_resultat GROUP BY numero_dossard, nom, genre, date_naissance';
+        $query = $this->db->query($sql);
+        foreach($query->getResultArray() as $row)
+        {
+            $coureurModel = new CoureurModel();
+            $nom = $row['nom'];
+            $numero_dossard = $row['numero_dossard'];
+            $genre = $row['genre']; 
+            $date_naissance = $row['date_naissance']; 
+
+            $coureurModel->insertCoureur($nom, $numero_dossard, $genre, $date_naissance);
+        }
+    }
+    
+
+    // public function insertCsvArrivee()
+    // {
+    //     $sql = 'SELECT arrivee FROM import_resultat';
+    //     $query = $this->db->query($sql);
+    //     $results = $query->getResult();
+
+    //     $participantModel = new ParticipantModel();
+    //     foreach ($results as $row) {
+    //         $arrivee = $row->arrivee;
+    //         $participantModel->insertArrivee($arrivee);
+    //     }
+    // }
 
 
 }
