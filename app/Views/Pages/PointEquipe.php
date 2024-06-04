@@ -18,7 +18,7 @@
             <div class="col-lg-12">
                     <div class="card-body">
                         <h5 class="card-title">Classement général</h5>
-                        <form id="selectionForm" action="<?= base_url('/filtreClassement') ?>" method="GET">
+                        <form id="selectionForm" action="<?= base_url('/filtreclassementequipe') ?>" method="GET">
                         <input type="hidden" name="indice" value="<?= $indice ?>">
                         <div class="col-md-2">
                             <select class="form-select" name="idetape" onchange="submitForm()">
@@ -50,17 +50,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-
-                        <th scope="col">Nom de l'Etape</th>
                         <th scope="col">Nom de l'Équipe</th>
-                        <th scope="col">Longueur</th>
-                        <th scope="col">Categorie</th>
-                        <th scope="col">Nb coureur</th>
-                        <th scope="col">Rang etape</th>
-                        <th scope="col">Coureur</th>
-                        <th scope="col">Numero Dossard</th>
-                        <th scope="col">Chronos</th>
-                        <th scope="col">Rang</th>
                         <th scope="col">Points</th>
                     </tr>
                 </thead>
@@ -68,17 +58,8 @@
                     <?php foreach ($classements as $classement) : ?>
                         <tr>
                            
-                            <td><?php echo $classement['etape_nom']; ?></td>
                             <td><?php echo $classement['equipe_nom']; ?></td>
-                            <td><?php echo $classement['longueur_km']; ?></td>
-                            <td><?php echo $classement['nom_categorie'];?></td>
-                            <td><?php echo $classement['nb_coureur']; ?></td>
-                            <td><?php echo $classement['rang_etape']; ?></td>
-                            <td><?php echo $classement['coureur_nom']; ?></td>
-                            <td><?php echo $classement['numero_dossard']; ?></td>
-                            <td><?php echo $classement['chronos']; ?></td>
-                            <td><?php echo $classement['rang']; ?></td>
-                            <td><?php echo $classement['points']; ?></td>
+                            <td><?php echo $classement['total_points']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

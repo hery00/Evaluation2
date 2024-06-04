@@ -43,6 +43,8 @@ $routes->get('/assignercoureur', 'ChoixCoureurController::assignerParticipant');
 
 $routes->get('/classementgeneral', 'PointClassementGeneraleController::classementgeneral');
 $routes->get('/filtreClassement', 'PointClassementGeneraleController::filtreClassement');
+$routes->get('/classementequipe', 'PointClassementGeneraleController::classementequipe');
+$routes->get('/filtreclassementequipe', 'PointClassementGeneraleController::filtreClassementEquipe');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');
 // $routes->get('clientcontroller/newdevis', 'ClientController::newdevis');

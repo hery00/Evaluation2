@@ -28,8 +28,8 @@ $courses = $courseService->getCourses();
                     </a>
                 </li>
                 <li>
-                    <a href="forms-layouts.html">
-                        <i class="bi bi-circle"></i><span>Classement général par équipe</span>
+                    <a href="<?= base_url('/classementequipe') ?>?indice=1">
+                        <i class="bi bi-circle"></i><span>Classement équipe</span>
                     </a>
                 </li>
             </ul>
