@@ -15,9 +15,13 @@ class ResetData_Controller extends BaseController
         // Créez une instance du service de réinitialisation de la base de données en passant la connexion
         $dbResetService = new ResetDataModel($db);
 
-        // Exécutez la réinitialisation des données
-        $result = $dbResetService->resetData();
 
-        return $result;
+        // Exécutez la réinitialisation des données
+        $dbResetService->resetData();
+        $data = [
+            'content' => view('Pages/import')
+        ];
+        return view('Layout_Admin/layout',$data);
+    
     }
 }

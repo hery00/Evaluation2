@@ -96,7 +96,6 @@ class PointClassementGeneraleController extends BaseController
         $equipeModel = new EquipeModel();
         $categorieModel = new CategorieModel();
         $classementModel = new PointClassementGeneraleModel();
-    
         $data['etapes'] = $etapeModel->getAllEtapes();
         $data['equipes'] = $equipeModel->getAllEquipes();
         $data['categories'] = $categorieModel->getAllCategories();
@@ -120,7 +119,6 @@ class PointClassementGeneraleController extends BaseController
         $indice = $this->request->getGet('indice');
         $PointClassementGeneraleModel = new PointClassementGeneraleModel();
         $id_etape = $this->request->getGet('idetape');
-        $id_equipe = $this->request->getGet('idequipe');
         $id_categorie = $this->request->getGet('idcategorie');
         $etapeModel = new EtapesModel();
         $equipeModel = new EquipeModel();
@@ -133,10 +131,10 @@ class PointClassementGeneraleController extends BaseController
         
         
         if ($id_etape != null) {
-            $data['classements'] = $PointClassementGeneraleModel->sumPointsEquipeByCategorie($id_categorie);
-        }
-        if ($id_equipe != null) {
             $data['classements'] = $PointClassementGeneraleModel->sumPointsEquipeByEtape($id_etape);
+        }
+        if ($id_categorie!= null) {
+            $data['classements'] = $PointClassementGeneraleModel->sumPointsEquipeByCategorie($id_categorie);
         }
         
         $data['indice'] = $indice;

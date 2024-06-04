@@ -199,6 +199,14 @@ CREATE TABLE Participation (
     FOREIGN KEY (id_equipe) REFERENCES Equipe(id_equipe)
 );
 
+create table penalite(
+    id_penalite serial primary key not null,
+    nom_etape VARCHAR(255),
+    nom_equipe VARCHAR(255),
+    penalite TIME
+);
+
+
 
 --Mandrosoa
 -- Équipe A
@@ -223,10 +231,6 @@ INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_
 
 -- Équipe C
 INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (3, 6, 3, '08:33:30', '11:18:20'); -- Jill
-
-
-
-
 
 create table import_etape (
     etape VARCHAR(225),

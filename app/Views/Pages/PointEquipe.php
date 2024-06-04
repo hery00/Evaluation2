@@ -29,14 +29,6 @@
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="form-select" name="idequipe" onchange="submitForm()">
-                                <option value="">Choisir Equipe</option>
-                                <?php foreach ($equipes as $equipe): ?>
-                                    <option value="<?= $equipe['id_equipe'] ?>"><?= $equipe['nom'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
                             <select class="form-select" name="idcategorie" onchange="submitForm()">
                                 <option value="">Choisir Categorie</option>
                                 <?php foreach ($categories as $categorie): ?>
@@ -50,14 +42,19 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Nom de l'Équipe</th>
-                        <th scope="col">Points</th>
+                        <th scope="col">id_equipe</th>
+                        <th scope="col">id_categorie</th>
+                        <th scope="col">nom_categorie</th>
+                        <th scope="col">equipe_nom</th>
+                        <th scope="col">total_points</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($classements as $classement) : ?>
                         <tr>
-                           
+                            <td><?php echo $classement['id_equipe']; ?></td>
+                            <td><?php echo $classement['id_categorie']; ?></td>
+                            <td><?php echo $classement['nom_categorie']; ?></td>
                             <td><?php echo $classement['equipe_nom']; ?></td>
                             <td><?php echo $classement['total_points']; ?></td>
                         </tr>

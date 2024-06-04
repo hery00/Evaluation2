@@ -47,28 +47,60 @@ class PointClassementGeneraleModel extends Model
     }
 
     public function sumPointsEquipeByCategorie($idcategorie)
-    {
-        $this->select('id_equipe,MAX(equipe_nom) as equipe_nom ,MAX(rang) as rang,SUM(points) as total_points');
-        $this->where('id_categorie',$idcategorie);
-        $this->groupBy('id_equipe');
-        $this->orderBy('rang');
-        return $this->findAll();
-    }
-    public function sumPointsEquipeByEtape($idetape)
-    {
-        $this->select('id_equipe,MAX(equipe_nom) as equipe_nom ,MAX(rang) as rang,SUM(points) as total_points');
-        $this->where('id_etape',$idetape);
-        $this->groupBy('id_equipe');
-        $this->orderBy('rang');
-        return $this->findAll();
-    }
-    public function sumPointsEquipe()
-    {
-        $this->select('id_equipe,MAX(equipe_nom) as equipe_nom ,MAX(rang) as rang,SUM(points) as total_points');
-        $this->groupBy('id_equipe');
-        $this->orderBy('rang');
-        return $this->findAll();
-    }
+{
+    $this->select([
+        'id_equipe',
+        'id_categorie',
+        'nom_categorie',
+        'equipe_nom',
+        'SUM(points) as total_points'
+    ]);
+    
+    $this->where('id_categorie', $idcategorie);
+    $this->groupBy(['id_equipe', 'id_categorie', 'nom_categorie', 'equipe_nom']);
+    $this->orderBy('total_points', 'DESC');
+    return $this->findAll();
+}
+
+
+public function sumPointsEquipeByEtape($idetape)
+{
+    $this->select([
+        'id_equipe',
+        'etape_nom',
+        'id_categorie',
+        'nom_categorie',
+        'equipe_nom',
+        'SUM(points) as total_points'
+    ]);
+    
+    $this->where('id_etape', $idetape);
+    
+    $this->groupBy(['id_equipe', 'etape_nom', 'id_categorie', 'nom_categorie', 'equipe_nom']);
+    $this->orderBy('total_points', 'DESC');
+    return $this->findAll();
+}
+
+
+
+public function sumPointsEquipe()
+{
+    $this->select([
+        'id_equipe',
+        'etape_nom',
+        'id_categorie',
+        'nom_categorie',
+        'equipe_nom',
+        'SUM(points) as total_points'
+    ]);
+
+    $this->groupBy(['id_equipe', 'etape_nom', 'id_categorie', 'nom_categorie', 'equipe_nom']);
+    $this->orderBy('total_points', 'DESC');
+    return $this->findAll();
+}
+
+
+
     
 
 }

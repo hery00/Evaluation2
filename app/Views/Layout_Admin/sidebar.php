@@ -30,6 +30,7 @@ $courses = $courseService->getCourses();
             </a>
         </li>
         <li class="nav-item">
+<<<<<<< Updated upstream
         <center><a href="<?= base_url('/generatecategories') ?>" class="btn btn-primary">Générer Catégories</a>
             </a></center>
         </li>
@@ -38,7 +39,14 @@ $courses = $courseService->getCourses();
             <a href action="<?= site_url('/resetables') ?>" class="btn btn-primary">Réinitialiser la base</a>
                 </form>
             </center>
+=======
+            <a class="nav-link " href="<?=base_url('/listpenalite') ?>">
+            <i class="bi bi-menu-button-wide"></i>
+                <span>Gerer les Pénalités</span>
+            </a>
+>>>>>>> Stashed changes
         </li>
+      
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Resultats</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -55,7 +63,17 @@ $courses = $courseService->getCourses();
                     </a>
                 </li>
             </ul>
-        </li><!-- End Forms Nav -->
-        
+        </li>
+        <li class="nav-item">
+        <center><a href="<?= base_url('/generatecategories') ?>" class="btn btn-primary">Générer Catégories</a>
+            </a></center>
+        </li>
+        <li class="nav-item">
+            <center> 
+                <form action="<?= base_url('/resetables') ?>" method="get">
+                    <button type="submit" class="btn btn-primary">Réinitialiser la base</button>
+                </form>
+            </center>
+        </li>
     </ul>
 </aside><!-- End Sidebar-->

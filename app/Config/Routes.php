@@ -31,7 +31,7 @@ $routes->post('importPoint', 'ImportController::import_points');
 
 $routes->get('/generatecategories', 'CoureurCategorieController::insert');
 
-$routes->get('/resetables', 'ResetData_Controller::resetTables');
+$routes->get('/resetables', 'ResetData_Controller::resetdata');
 
 $routes->get('/generatepdf', 'PdfController::generate_pdf');
 
@@ -47,6 +47,11 @@ $routes->get('/classementgeneral', 'PointClassementGeneraleController::classemen
 $routes->get('/filtreClassement', 'PointClassementGeneraleController::filtreClassement');
 $routes->get('/classementequipe', 'PointClassementGeneraleController::classementequipe');
 $routes->get('/filtreclassementequipe', 'PointClassementGeneraleController::filtreClassementEquipe');
+
+
+$routes->get('/listpenalite', 'PenaliteController::getallpenalite');
+$routes->get('/forminsert', 'PenaliteController::forminsert');
+$routes->get('deletepenalité', 'PenaliteController::delete');
 // $routes->post('clientcontroller/authentification', 'ClientController::authentification');
 // $routes->get('clientcontroller/listdevis', 'ClientController::listdevis');
 // $routes->get('clientcontroller/newdevis', 'ClientController::newdevis');

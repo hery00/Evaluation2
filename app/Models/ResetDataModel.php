@@ -17,25 +17,28 @@ class ResetDataModel extends Model
     public function resetData()
     {
         try {
-           
+            $db = \Config\Database::connect($this->DBGroup);
+            
             $tables = [
-                'Course', 
-                'Categorie',
-                'Equipe',  
-                'Coureur',
-                'Categorie', 
-                'Equipe',
-                'Etape',
-                'Participation',
+                'course', 
+                'categorie',
+                'equipe',  
+                'coureur',
+                'coureurcategorie', 
+                'etape',
+                'etapecategorie',
+                'participation',
+                'penalite',
                 'import_etape', 
                 'import_resultat', 
                 'import_point'
             ];
 
-            foreach ($tables as $table) {
-                // Tronquer la table
-                $this->db->table($table)->truncate();
-            }
+            $db->query('SET CONSTRAINTS ALL DEFERRED');
+
+        foreach ($tables as $table) {
+            $db->query("TRUNCATE TABLE $table RESTART IDENTITY CASCADE");
+        }
 
             return "Les données ont été réinitialisées avec succès.";
         } catch (\Exception $e) {
