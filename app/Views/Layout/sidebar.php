@@ -28,6 +28,11 @@ $courses = $courseService->getCourses();
                     </a>
                 </li>
                 <li>
+                    <a href="<?= base_url('/generatepdf') ?>">
+                        <i class="bi bi-circle"></i><span>Générer PDF</span>
+                    </a>
+                </li>
+                <li>
                     <a href="forms-layouts.html">
                         <i class="bi bi-circle"></i><span>Classement général par équipe</span>
                     </a>

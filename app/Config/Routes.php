@@ -33,6 +33,8 @@ $routes->get('/generatecategories', 'CoureurCategorieController::insert');
 
 $routes->get('/resetables', 'ResetData_Controller::resetTables');
 
+$routes->get('/generatepdf', 'PdfController::generate_pdf');
+
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');
 $routes->get('/listecoureur', 'EtapesController::getCoureurEtape');

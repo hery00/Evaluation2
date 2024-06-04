@@ -35,8 +35,7 @@ $courses = $courseService->getCourses();
         </li>
         <li class="nav-item">
             <center> 
-                <form action="<?= site_url('/resetables') ?>" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir réinitialiser la base de données ? Cette action est irréversible.');">
-                    <button type="submit" class="btn btn-primary">Réinitialiser la base</button>
+            <a href action="<?= site_url('/resetables') ?>" class="btn btn-primary">Réinitialiser la base</a>
                 </form>
             </center>
         </li>

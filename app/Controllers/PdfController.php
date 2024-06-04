@@ -6,13 +6,29 @@ use CodeIgniter\Controller;
 class PdfController extends Controller {
 
     public function generate_pdf() {
-        $pdf = new \App\Libraries\ExportPdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-        $output = $pdf->generatePDF();
+        // Récupérer les données de classement par équipe
+        //$classementEquipeData = ...;  Récupérez vos données ici
 
-        // Définition des en-têtes pour l'affichage ou le téléchargement du PDF
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: inline; filename="example.pdf"');
-        header('Content-Length: '. strlen($output));
-        echo $output;
+        // Vérifier le vainqueur (supposons que le vainqueur est le premier dans le classement)
+        //$vainqueur = $classementEquipeData[0];
+
+        $exportpdf = new ExportPdf();
+        $exportpdf->generatePDF();
+        // Créer un nouvel objet ExportPdf
+        $pdf = new ExportPdf();
+
+        // Début du document PDF
+        $pdf->AddPage();
+
+        // Ajouter du contenu au PDF (par exemple, le certificat)
+        $pdf->SetFont('times', '', 12);
+        $pdf->Write(5, 'Certificat de Vainqueur');
+
+        // Générer le lien pour le certificat du vainqueur
+        $pdf->Cell(0, 10, 'Cliquez ici pour télécharger le certificat');
+
+        // Afficher le PDF dans le navigateur
+        $pdf->Output('certificat_vainqueur.pdf', 'I');
+
     }
 }
