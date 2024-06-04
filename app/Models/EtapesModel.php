@@ -28,4 +28,9 @@ class EtapesModel extends Model
             ->first();
     }
 
+    public function insert_etapecsv()
+    {
+        
+        INSERT INTO Etape (nom,longueur_km,nb_coureur,rang_etape,depart) SELECT etape,longueur,nb_coureur,rang_etape,date_depart.' '.heure_depart FROM import_etape GROUP BY etape,longueur,nb_coureur,rang_etape,date_depart.' '.heure_depart
+    }
 }

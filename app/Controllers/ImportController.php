@@ -95,12 +95,39 @@ class ImportController extends BaseController
 
 
     }
+
     public function link_point()
     {
         $data = [
             'content' => view('Pages/Import_Points')
         ];
         return view('Layout_Admin/layout',$data);
+    }
+
+    public function import_equipe()
+    {
+        helper(['form', 'url']);
+        $importModel = new ImportModel();
+        
+        $file = $this->request->getFile('fichier');
+        //$filepath = WRITEPATH . 'uploads/' . $file->store();
+        $cheminTemporaire = $file->getTempName();
+        
+       // return redirect()->back()->with('success', 'File imported successfully.');
+
+        $tab1 = $importModel -> import_csv($cheminTemporaire);
+        // var_dump($tab1);
+        
+        for ($i = 1; $i < count($tab1); $i++) 
+        {
+            $PointModel = new ImportPointModel();
+
+            $classement = $tab1[$i][0];
+            $point = $tab1[$i][1];
+
+            $PointModel -> insertCsvData($classement, $point); 
+        }
+
     }
 
 

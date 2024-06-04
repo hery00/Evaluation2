@@ -30,10 +30,16 @@ $courses = $courseService->getCourses();
             </a>
         </li>
         <li class="nav-item">
-            <a href="<?= base_url('/generatecategories') ?>" class="btn btn-primary">Générer Catégories</a>
-            </a>
+        <center><a href="<?= base_url('/generatecategories') ?>" class="btn btn-primary">Générer Catégories</a>
+            </a></center>
         </li>
-        
+        <li class="nav-item">
+            <center> 
+                <form action="<?= site_url('/resetables') ?>" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir réinitialiser la base de données ? Cette action est irréversible.');">
+                    <button type="submit" class="btn btn-primary">Réinitialiser la base</button>
+                </form>
+            </center>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Resultats</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -51,8 +57,6 @@ $courses = $courseService->getCourses();
                 </li>
             </ul>
         </li><!-- End Forms Nav -->
-        <li class="nav-item">
-           <center> <a href="<?= base_url('/generate-categories') ?>" class="btn btn-primary">Générer Catégories</a></center>
-        </li>
+        
     </ul>
 </aside><!-- End Sidebar-->
