@@ -30,7 +30,14 @@ class EtapesModel extends Model
 
     public function insert_etapecsv()
     {
-        
-        INSERT INTO Etape (nom,longueur_km,nb_coureur,rang_etape,depart) SELECT etape,longueur,nb_coureur,rang_etape,date_depart.' '.heure_depart FROM import_etape GROUP BY etape,longueur,nb_coureur,rang_etape,date_depart.' '.heure_depart
+        $query = $this->db->query
+        ('
+            INSERT INTO Etape (nom, longueur_km, nb_coureur, rang_etape, depart)
+            SELECT etape, longueur, nb_coureur, rang_etape, CONCAT(date_depart, " ", heure_depart) AS depart
+            FROM import_etape
+            GROUP BY etape, longueur, nb_coureur, rang_etape, CONCAT(date_depart, " ", heure_depart)
+        ');
+
+        return $query->resultID; 
     }
 }
