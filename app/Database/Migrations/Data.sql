@@ -159,32 +159,57 @@ CREATE TABLE Classement (
     id_classement SERIAL PRIMARY KEY,
     id_etape INTEGER NOT NULL,
     id_coureur INTEGER NOT NULL,
+    Chronos TIME,
     rang INTEGER NOT NULL,
-    points INTEGER NOT NULL,
     FOREIGN KEY (id_etape) REFERENCES Etape(id_etape),
     FOREIGN KEY (id_coureur) REFERENCES Coureur(id_coureur)
 );
 
--- Insérer des données de classement pour l'étape 1
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (1, 1, 1, 10);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (1, 2, 2, 6);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (1, 3, 3, 4);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (1, 4, 4, 2);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (1, 5, 5, 1);
+--ity le DENSE RANK
+Create or replace view classement_general as
+SELECT
+    id_participation,
+    id_etape,
+    id_coureur,
+    etape_nom,
+    longueur_km,
+    nb_coureur,
+    rang_etape,
+    coureur_nom,
+    numero_dossard,
+    date_naissance,
+    id_equipe,
+    equipe_nom,
+    CASE 
+        WHEN arrivee IS NULL THEN '' -- Renvoie une chaîne vide si arrivee est nulle
+        ELSE (DATE_PART('day', arrivee - depart) * 24 +
+            DATE_PART('hour', arrivee - depart))::int || ':' ||
+            TO_CHAR(DATE_PART('minute', arrivee - depart), 'FM00') || ':' ||
+            TO_CHAR(DATE_PART('second', arrivee - depart), 'FM00')
+    END AS Chronos,
+    CASE 
+        WHEN arrivee IS NOT NULL THEN DENSE_RANK() OVER (PARTITION BY id_etape ORDER BY (arrivee - depart) ASC)
+        ELSE NULL -- Renvoie NULL si arrivee est nulle
+    END AS rang
+FROM vparticipationdetails;
 
--- Insérer des données de classement pour l'étape 2
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (2, 6, 1, 10);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (2, 7, 2, 6);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (2, 8, 3, 4);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (2, 9, 4, 2);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (2, 10, 5, 1);
 
--- Insérer des données de classement pour l'étape 3
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (3, 11, 1, 10);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (3, 12, 2, 6);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (3, 13, 3, 4);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (3, 14, 4, 2);
-INSERT INTO Classement (id_etape, id_coureur, rang, points) VALUES (3, 15, 5, 1);
+
+create table points(
+    id_point serial primary key not null,
+    rang_point INTEGER,
+    points INTEGER
+);
+
+INSERT INTO points (rang_point, points)
+VALUES
+    (1, 10),
+    (2, 6),
+    (3, 4),
+    (4, 2),
+    (5, 1);
+
+
 
 CREATE TABLE Participation (
     id_participation SERIAL PRIMARY KEY,
@@ -223,6 +248,9 @@ INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_
 
 -- Équipe C
 INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (3, 6, 3, '08:33:30', '11:18:20'); -- Jill
+
+
+
 
 
 create table import_etape (
