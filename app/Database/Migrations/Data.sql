@@ -200,27 +200,6 @@ CREATE TABLE Participation (
 
 
 
-CREATE OR REPLACE VIEW vCoureurDetails AS
-SELECT 
-    c.id_coureur,
-    c.nom AS coureur_nom,
-    c.numero_dossard,
-    c.genre,
-    c.date_naissance,
-    e.id_equipe,
-    e.nom AS equipe_nom,
-    cat.id_categorie,
-    cat.nom AS categorie_nom
-FROM 
-    Coureur c
-JOIN 
-    equipe e ON c.id_equipe = e.id_equipe
-JOIN 
-    CoureurCategorie cc ON c.id_coureur = cc.id_coureur
-JOIN 
-    Categorie cat ON cc.id_categorie = cat.id_categorie;
-
-
 --Mandrosoa
 -- Équipe A
 INSERT INTO Participation (id_etape, id_coureur, id_equipe, heure_depart, heure_arrivee) VALUES (2, 1, 1, '09:00:45', '11:31:30'); -- Lova

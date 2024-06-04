@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\CoureurDetailsModel;
+use App\Models\CoureurModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class CoureurController extends BaseController
@@ -22,14 +22,14 @@ class CoureurController extends BaseController
     }
 
         
-        $coureurDetailsModel = new CoureurDetailsModel();
+        $CoureurModel = new CoureurModel();
         if(isset($_GET['idcategorie']))
         {
             $idcategorie = $_GET['idcategorie'];
-            $data['coureurs']= $coureurDetailsModel->getCoureurDetailsByCategorie($id_equipe,$idcategorie);
+            $data['coureurs']= $CoureurModel->getCoureurByCategorie($id_equipe,$idcategorie);
         }
         else{
-            $data['coureurs'] = $coureurDetailsModel->getCoureurDetails($id_equipe);
+            $data['coureurs'] = $CoureurModel->getCoureurByEquipe($id_equipe);
         }
        
         $data = [

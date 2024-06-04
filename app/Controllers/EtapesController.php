@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\EtapesModel;
-use App\Models\CoureurDetailsModel;
+use App\Models\CoureurModel;
 use App\Models\ParticipationDetailsModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -15,9 +15,9 @@ class EtapesController extends BaseController
         $session = session();  
         $id_equipe = $session->get('id_user');
         $etapeModel = new EtapesModel();
-        $coureurDetailsModel = new CoureurDetailsModel();
+        $CoureurModel = new CoureurModel();
         $data['etapes'] = $etapeModel->getEtapesByCourse();
-        $data['coureurs'] = $coureurDetailsModel->getCoureurDetails($id_equipe);
+        $data['coureurs'] = $CoureurModel->getCoureurByEquipe($id_equipe);
         $data =
         [
             'content' => view('Pages/ListeCoureurEquipe',$data)

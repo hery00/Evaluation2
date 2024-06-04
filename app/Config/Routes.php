@@ -29,7 +29,7 @@ $routes->post('importcsv', 'ImportController::importcsv');
 $routes->get('linkPoint','ImportController::link_point');
 $routes->post('importPoint', 'ImportController::import_points');
 
-$routes->get('/generate-categories', 'CoureurCategorieController::insert');
+$routes->get('/generatecategories', 'CoureurCategorieController::insert');
 
 $routes->get('/equipeaccueil', 'EquipeController::index');
 $routes->get('/coureur/equipe', 'CoureurController::getCoureurByEquipe');

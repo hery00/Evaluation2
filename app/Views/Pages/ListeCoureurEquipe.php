@@ -36,20 +36,16 @@
                   <th scope="col">Genre</th>
                   <th scope="col">Date de Naissance</th>
                   <th scope="col">Équipe</th>
-                  <th scope="col">Catégorie</th>
-                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach ($coureurs as $coureur): ?>
                 <tr>
                     <td><?= $coureur['id_coureur'] ?></td>
-                    <td><?= $coureur['coureur_nom'] ?></td>
+                    <td><?= $coureur['nom'] ?></td>
                     <td><?= $coureur['numero_dossard'] ?></td>
                     <td><?= $coureur['genre'] ?></td>
                     <td><?= $coureur['date_naissance'] ?></td>
-                    <td><?= $coureur['equipe_nom'] ?></td>
-                    <td><?= $coureur['categorie_nom'] ?></td>
                     <td><input class="form-check-input" type="radio" name="id_coureur" id="id_coureur" value="<?= $coureur['id_coureur'] ?>" ></td> 
                 </tr>
                 <?php endforeach; ?>

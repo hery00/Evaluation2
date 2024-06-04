@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ParticipantModel;
-use App\Models\CoureurDetailsModel;
+use App\Models\CoureurModel;
 use App\Models\EtapesModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -14,11 +14,11 @@ class ChoixCoureurController extends BaseController
     {
         $session = session();
         $Participant = new ParticipantModel();
-        $Coureur = new CoureurDetailsModel();
+        $Coureur = new CoureurModel();
         $Etape = new EtapesModel();
         $id_coureur = $this->request->getGet('id_coureur');
         $id_etape = $this->request->getGet('id_etape');
-        $coureur = $Coureur->getCoureurDetailsByid($id_coureur);
+        $coureur = $Coureur->getCoureurByid($id_coureur);
         $etape = $Etape->getEtapesById($id_etape);
         $isparticipant = $Participant->EfaParticipant($id_etape,$coureur['id_equipe'], $id_coureur);
         if($isparticipant==true)

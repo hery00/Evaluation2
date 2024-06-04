@@ -18,14 +18,9 @@ class CoureurCategorieModel extends Model
      * @param int $idEquipe
      * @return bool
      */
-    public function insertCoureurCategorie($idCoureur, $idCategorie, $idEquipe)
+    public function insertCoureurCategorie($data)
     {
-        $data = [
-            'id_coureur' => $idCoureur,
-            'id_categorie' => $idCategorie,
-            'id_equipe' => $idEquipe
-        ];
-
+        
         return $this->insert($data);
     }
 }

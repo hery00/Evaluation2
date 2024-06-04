@@ -3,7 +3,7 @@
 // App/Services/CourseService.php
 namespace App\Services;
 
-use App\Models\CoureurDetailsModel;
+use App\Models\CoureurModel;
 
 class CoureurService
 {
@@ -11,7 +11,7 @@ class CoureurService
 
     public function __construct()
     {
-        $this->coureurModel = new CoureurDetailsModel();
+        $this->coureurModel = new CoureurModel();
     }
 
     public function getCoureurs()

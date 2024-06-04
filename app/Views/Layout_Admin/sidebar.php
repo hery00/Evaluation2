@@ -30,9 +30,7 @@ $courses = $courseService->getCourses();
             </a>
         </li>
         <li class="nav-item">
-            <a href="<?= base_url('/generate-categories') ?>" class="btn btn-primary">Générer Catégories</a>
-            <i class="bi bi-menu-button-wide"></i>
-                <span>Liste Des Etapes</span>
+            <a href="<?= base_url('/generatecategories') ?>" class="btn btn-primary">Générer Catégories</a>
             </a>
         </li>
         <li class="nav-item">
