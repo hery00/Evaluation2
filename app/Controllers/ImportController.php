@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\EtapesModel;
 use App\Models\ImportModel;
 use App\Models\ImportEtapeModel;
 use App\Models\ImportResultatModel;
@@ -36,6 +37,8 @@ class ImportController extends BaseController
         $tab1 = $importModel -> import_csv($cheminTemporaire);
         $tab2 = $importModel -> import_csv($cheminTemporaire2);
 
+        $etapesmodel = new EtapesModel();
+
         for ($i = 1; $i < count($tab1); $i++) 
         {
             $etapemodel = new ImportEtapeModel();
@@ -49,7 +52,8 @@ class ImportController extends BaseController
 
             $etapemodel -> insertCsvData($etape, $longueur, $nb_coureur, $rang_etape, $date_depart, $heure_depart); 
         }
-
+        
+        $etapesmodel->insert_etapecsv();
 
         for ($i = 1; $i < count($tab2); $i++) 
         {

@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class ImportPointModel extends Model
 {
-    protected $table = 'import_point'; // Le nom de votre table
-    protected $primaryKey = 'id'; // Supposons que vous avez une colonne id comme clé primaire
+    protected $table = 'import_point'; 
+    protected $primaryKey = 'id'; 
 
     protected $allowedFields = [
         'classement',
@@ -34,7 +34,7 @@ class ImportPointModel extends Model
      */
     public function insertCsvData($classement, $point)
     {
-        $sql = "INSERT INTO import_classement VALUES ('%d','%d')";
+        $sql = "INSERT INTO import_point VALUES ('%d','%d')";
         $sql = sprintf($sql,$classement, $point);
         echo $sql;
         $this->db->query($sql);
