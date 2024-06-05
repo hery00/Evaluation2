@@ -44,6 +44,8 @@ class ImportModel extends Model
     
     public function insertCsvEquipe()
     {
+        $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
+
         $sql = 'SELECT equipe FROM import_resultat GROUP BY equipe';
         $query = $this->db->query($sql);
         foreach($query->getResultArray() as $row)
@@ -55,10 +57,14 @@ class ImportModel extends Model
 
             $equipeModel->insertEquipe($nom, $login, $passe);
         }
+
+        $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
     }
     
     public function insertCsvCoureur()
     {
+        $this->db->query('ALTER TABLE coureur DISABLE TRIGGER ALL;');
+
         $sql = 'SELECT numero_dossard, nom, genre, date_naissance FROM import_resultat GROUP BY numero_dossard, nom, genre, date_naissance';
         $query = $this->db->query($sql);
         foreach($query->getResultArray() as $row)
@@ -71,7 +77,25 @@ class ImportModel extends Model
 
             $coureurModel->insertCoureur($nom, $numero_dossard, $genre, $date_naissance);
         }
+        $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
     }
+    
+    public function insertCsvidequipe()
+    {
+        $this->db->query('ALTER TABLE coureur DISABLE TRIGGER ALL;');
+
+        $sql = 'SELECT id_equipe FROM vequipe';
+        $query = $this->db->query($sql);
+    
+        foreach ($query->getResultArray() as $row) {
+            $coureurModel = new CoureurModel();
+            $id_equipe = $row['id_equipe'];
+            $coureurModel->insertIdEquipe($id_equipe);
+        }
+
+        $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
+    }
+    
     
 
     // public function insertCsvArrivee()

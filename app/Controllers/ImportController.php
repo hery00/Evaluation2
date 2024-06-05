@@ -71,6 +71,7 @@ class ImportController extends BaseController
 
         $importModel->insertCsvEquipe();
         $importModel->insertCsvCoureur();
+        $importModel->insertCsvidequipe();
         // $importModel->insertCsvArrivee();
         
         //var_dump($tab2);
@@ -113,7 +114,7 @@ class ImportController extends BaseController
         return view('Layout_Admin/layout',$data);
     }
 
-    
+
 
     //     for ($i = 1; $i < count($donnees); $i++) {
     //         // $ligne = $donnees[$i];

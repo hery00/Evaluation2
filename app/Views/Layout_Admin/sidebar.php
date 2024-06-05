@@ -29,23 +29,6 @@ $courses = $courseService->getCourses();
                 <span>Liste Des Etapes</span>
             </a>
         </li>
-        <li class="nav-item">
-<<<<<<< Updated upstream
-        <center><a href="<?= base_url('/generatecategories') ?>" class="btn btn-primary">Générer Catégories</a>
-            </a></center>
-        </li>
-        <li class="nav-item">
-            <center> 
-            <a href action="<?= site_url('/resetables') ?>" class="btn btn-primary">Réinitialiser la base</a>
-                </form>
-            </center>
-=======
-            <a class="nav-link " href="<?=base_url('/listpenalite') ?>">
-            <i class="bi bi-menu-button-wide"></i>
-                <span>Gerer les Pénalités</span>
-            </a>
->>>>>>> Stashed changes
-        </li>
       
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">

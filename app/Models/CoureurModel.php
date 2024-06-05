@@ -37,6 +37,8 @@ use CodeIgniter\Model;
 
         public function insertCoureur($nom, $numero_dossard, $genre, $date_naissance)
         {
+            $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
+
             $data = [
                 'nom' => $nom,
                 'numero_dossard' => $numero_dossard,
@@ -45,15 +47,19 @@ use CodeIgniter\Model;
              ];
         
             return $this->insert($data);   
+        $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
+
         }
 
         public function insertIdEquipe($id)
         {
+            $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
+
             $data = [
                 'id_equipe' => $id
              ];
         
             return $this->insert($data);   
-            
+            $this->db->query('ALTER TABLE coureur ENABLE TRIGGER ALL;');
         }
 }
